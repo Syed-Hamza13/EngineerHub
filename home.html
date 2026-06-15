@@ -1,258 +1,493 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
+<html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EngineerHub | The Intelligent Workspace for Engineering Teams</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600;700&amp;family=Geist+Mono&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-mono.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
           darkMode: "class",
           theme: {
             extend: {
               "colors": {
-                      "secondary-fixed-dim": "#cdbdff",
-                      "on-tertiary-container": "#e1fff6",
-                      "tertiary-fixed-dim": "#44ddc1",
-                      "on-tertiary-fixed-variant": "#005145",
-                      "tertiary-container": "#00816f",
-                      "inverse-primary": "#b3c5ff",
-                      "primary-fixed-dim": "#b3c5ff",
-                      "outline": "#727687",
-                      "on-primary-fixed": "#001849",
-                      "inverse-on-surface": "#f0f1f2",
-                      "surface-container-low": "#f3f4f5",
-                      "on-background": "#191c1d",
-                      "surface-container-highest": "#e1e3e4",
-                      "surface-container": "#edeeef",
-                      "primary": "#0050cb",
-                      "outline-variant": "#c2c6d8",
-                      "primary-container": "#0066ff",
-                      "on-secondary-container": "#fcf6ff",
-                      "tertiary-fixed": "#68fadd",
-                      "secondary-fixed": "#e8deff",
-                      "on-secondary": "#ffffff",
-                      "surface-dim": "#d9dadb",
-                      "inverse-surface": "#2e3132",
-                      "on-tertiary-fixed": "#00201a",
-                      "on-secondary-fixed-variant": "#4f00d0",
-                      "secondary": "#632ce5",
-                      "on-surface": "#191c1d",
-                      "error-container": "#ffdad6",
-                      "tertiary": "#006657",
-                      "primary-fixed": "#dae1ff",
-                      "on-surface-variant": "#424656",
-                      "error": "#ba1a1a",
-                      "on-primary-container": "#f8f7ff",
-                      "surface-container-high": "#e7e8e9",
-                      "surface-variant": "#e1e3e4",
-                      "on-primary": "#ffffff",
-                      "secondary-container": "#7c4dff",
-                      "surface-container-lowest": "#ffffff",
-                      "surface-tint": "#0054d6",
-                      "on-error": "#ffffff",
-                      "surface-bright": "#f8f9fa",
-                      "on-error-container": "#93000a",
-                      "surface": "#f8f9fa",
-                      "on-tertiary": "#ffffff",
-                      "background": "#f8f9fa",
-                      "on-primary-fixed-variant": "#003fa4",
-                      "on-secondary-fixed": "#20005f"
+                "secondary-fixed-dim": "#cdbdff",
+                "on-secondary": "#ffffff",
+                "on-primary-container": "#f8f7ff",
+                "primary": "#0050cb",
+                "inverse-surface": "#2e3132",
+                "surface-container-lowest": "#ffffff",
+                "secondary-container": "#7c4dff",
+                "on-tertiary-container": "#e1fff6",
+                "surface-container-highest": "#e1e3e4",
+                "background": "#f8f9fa",
+                "on-secondary-fixed-variant": "#4f00d0",
+                "surface-container-low": "#f3f4f5",
+                "on-tertiary": "#ffffff",
+                "on-error": "#ffffff",
+                "surface-container": "#edeeef",
+                "on-primary": "#ffffff",
+                "on-tertiary-fixed-variant": "#005145",
+                "inverse-on-surface": "#f0f1f2",
+                "surface": "#f8f9fa",
+                "error": "#ba1a1a",
+                "surface-bright": "#f8f9fa",
+                "on-secondary-fixed": "#20005f",
+                "tertiary-container": "#00816f",
+                "surface-dim": "#d9dadb",
+                "tertiary-fixed": "#68fadd",
+                "secondary": "#632ce5",
+                "on-surface-variant": "#424656",
+                "on-background": "#191c1d",
+                "secondary-fixed": "#e8deff",
+                "outline-variant": "#c2c6d8",
+                "error-container": "#ffdad6",
+                "inverse-primary": "#b3c5ff",
+                "surface-tint": "#0054d6",
+                "on-tertiary-fixed": "#00201a",
+                "primary-fixed": "#dae1ff",
+                "on-secondary-container": "#fcf6ff",
+                "on-primary-fixed": "#001849",
+                "tertiary": "#006657",
+                "on-primary-fixed-variant": "#003fa4",
+                "primary-fixed-dim": "#b3c5ff",
+                "primary-container": "#0066ff",
+                "on-surface": "#191c1d",
+                "on-error-container": "#93000a",
+                "surface-container-high": "#e7e8e9",
+                "surface-variant": "#e1e3e4",
+                "tertiary-fixed-dim": "#44ddc1",
+                "outline": "#727687"
               },
               "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
               },
               "spacing": {
-                      "stack-xs": "4px",
-                      "container-max": "1200px",
-                      "sidebar-width": "240px",
-                      "gutter": "16px",
-                      "stack-lg": "24px",
-                      "stack-md": "16px",
-                      "stack-sm": "8px",
-                      "margin-mobile": "16px",
-                      "margin-desktop": "32px"
+                "stack-lg": "24px",
+                "container-max": "1200px",
+                "stack-xs": "4px",
+                "sidebar-width": "240px",
+                "margin-mobile": "16px",
+                "gutter": "16px",
+                "stack-sm": "8px",
+                "stack-md": "16px",
+                "margin-desktop": "32px"
               },
               "fontFamily": {
-                      "body-lg": ["Inter"],
-                      "headline-xl": ["Geist"],
-                      "headline-lg": ["Geist"],
-                      "body-sm": ["Inter"],
-                      "label-md": ["Geist"],
-                      "mono-sm": ["Geist Mono"],
-                      "headline-md": ["Geist"],
-                      "body-md": ["Inter"]
+                "headline-md": ["Geist", "sans-serif"],
+                "mono-sm": ["Geist Mono", "monospace"],
+                "headline-lg": ["Geist", "sans-serif"],
+                "label-md": ["Geist", "sans-serif"],
+                "body-sm": ["Inter", "sans-serif"],
+                "body-md": ["Inter", "sans-serif"],
+                "headline-xl": ["Geist", "sans-serif"],
+                "body-lg": ["Inter", "sans-serif"]
               },
               "fontSize": {
-                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                      "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
-                      "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                      "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
-                      "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
-                      "mono-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
-                      "headline-md": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
-                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                "headline-md": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                "mono-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
               }
             },
           },
         }
     </script>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; color: #191c1d; }
+        .geist-font { font-family: 'Geist', sans-serif; }
+        .geist-mono { font-family: 'Geist Mono', monospace; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-panel { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(229, 231, 235, 0.5); }
+        .ai-gradient-border { border: 1px solid transparent; background: linear-gradient(white, white) padding-box, linear-gradient(to right, #7c4dff, #0066ff) border-box; }
+        .hero-pattern { background-image: radial-gradient(circle at 2px 2px, #e5e7eb 1px, transparent 0); background-size: 32px 32px; }
+
+        /* Animation Styles */
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
-        .ai-surface-tint {
-            background-color: rgba(124, 77, 255, 0.02);
+        .animate-bounce-subtle {
+            animation: bounce-subtle 4s ease-in-out infinite;
         }
-        .focus-ring:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0066ff;
+
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .reveal { opacity: 0; }
+        .reveal.active { animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+        /* Shimmer Effect */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .shimmer-badge {
+            background: linear-gradient(90deg, rgba(0, 102, 255, 0.05) 25%, rgba(0, 102, 255, 0.15) 50%, rgba(0, 102, 255, 0.05) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite linear;
+        }
+
+        /* Interactive Navigation Links */
+        .nav-link {
+            position: relative;
+            padding-bottom: 2px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #0050cb;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hover & Active states for buttons */
+        .btn-scale {
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-scale:hover {
+            transform: scale(1.03);
+        }
+        .btn-scale:active {
+            transform: scale(0.97);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal, .animate-bounce-subtle, .shimmer-badge, .btn-scale, .nav-link::after {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
         }
     </style>
 </head>
-<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
-<!-- Top Navigation Anchor (Manual suppression for Sign Up page check - Hidden per Relevance Check rule but keeping TopAppBar structure for brand identity) -->
-<header class="w-full top-0 sticky bg-background dark:bg-background border-b border-outline-variant dark:border-outline z-50">
-<nav class="flex justify-between items-center px-margin-desktop py-stack-md max-w-container-max mx-auto">
-<div class="text-headline-md font-headline-md font-semibold text-primary dark:text-primary-fixed cursor-pointer">
-                EngineerHub
-            </div>
-<div class="flex items-center gap-stack-md">
-<a class="text-on-surface-variant font-label-md hover:text-primary transition-colors cursor-pointer" href="#">Already a member?</a>
-<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md hover:opacity-90 active:opacity-80 transition-all">
-                    Login
-                </button>
+<body class="overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<header class="fixed top-0 right-0 w-full h-16 glass-panel z-50 flex justify-between items-center px-margin-desktop">
+<div class="flex items-center gap-stack-sm cursor-pointer group">
+<span class="text-primary material-symbols-outlined text-[28px] group-hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">terminal</span>
+<span class="text-headline-md font-headline-md font-bold tracking-tight text-on-surface">EngineerHub</span>
 </div>
+<div class="hidden md:flex items-center gap-stack-lg">
+<nav class="flex items-center gap-stack-md text-label-md font-label-md">
+<a class="nav-link text-on-surface-variant hover:text-primary transition-colors" href="#features">Features</a>
+<a class="nav-link text-on-surface-variant hover:text-primary transition-colors" href="#workflow">Workflow</a>
+<a class="nav-link text-on-surface-variant hover:text-primary transition-colors" href="#trust">Enterprise</a>
 </nav>
+<div class="h-6 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-stack-sm">
+<button class="btn-scale text-label-md font-label-md px-4 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg">Sign In</button>
+<button class="btn-scale text-label-md font-label-md px-4 py-2 bg-primary text-white hover:bg-primary/90 rounded-lg shadow-sm">Get Started</button>
+</div>
+</div>
 </header>
-<main class="flex-grow flex items-center justify-center py-20 px-margin-mobile md:px-0 relative overflow-hidden">
-<!-- Abstract Background Detail -->
-<div class="absolute top-0 right-0 w-1/3 h-full opacity-5 pointer-events-none">
-<svg class="w-full h-full fill-primary" viewbox="0 0 100 100">
-<path d="M0,0 L100,0 L100,100 Z" opacity="0.1"></path>
-<circle cx="80" cy="20" r="15"></circle>
-</svg>
+<main class="pt-16">
+<!-- Section 1: Hero -->
+<section class="relative min-h-[921px] flex items-center justify-center overflow-hidden hero-pattern">
+<div class="container-max mx-auto px-margin-desktop py-24 text-center relative z-10">
+<div class="reveal inline-flex items-center gap-2 px-3 py-1 shimmer-badge border border-primary/20 rounded-full mb-8">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-mono-sm font-mono-sm text-primary uppercase tracking-wider">v2.0 Engineer Assistant now live</span>
 </div>
-<div class="w-full max-w-[440px] z-10">
-<!-- Branding/Heading -->
-<div class="text-center mb-stack-lg">
-<h1 class="font-headline-xl text-headline-xl text-on-background mb-stack-xs">Join the hub</h1>
-<p class="font-body-md text-on-surface-variant">The workspace for high-velocity engineering teams.</p>
-</div>
-<!-- Sign Up Card -->
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 shadow-sm">
-<!-- SSO Provider -->
-<button class="w-full flex items-center justify-center gap-stack-md bg-white border border-outline-variant py-2.5 rounded-lg font-label-md text-on-surface hover:bg-surface-container transition-colors focus-ring mb-stack-md">
-<svg class="w-5 h-5" viewbox="0 0 24 24">
-<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
-<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
-<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
-<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
-</svg>
-                    Continue with Google
+<h1 class="reveal text-headline-xl font-headline-xl text-[48px] md:text-[72px] leading-tight md:leading-[1.1] mb-6 max-w-4xl mx-auto tracking-tighter" style="animation-delay: 0.1s;">
+                The Intelligent Workspace for <span class="text-primary">Engineering Teams</span>
+</h1>
+<p class="reveal text-body-lg font-body-lg text-on-surface-variant max-w-2xl mx-auto mb-12" style="animation-delay: 0.2s;">
+                Centralize research, detect contradictions, and generate technical reports with AI-powered clarity. Designed for the rigor of modern engineering workflows.
+            </p>
+<div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4" style="animation-delay: 0.3s;">
+<button class="btn-scale w-full sm:w-auto px-8 py-4 bg-primary text-on-primary font-headline-md text-headline-md rounded-lg shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                    Get Started <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="btn-scale w-full sm:w-auto px-8 py-4 bg-white border border-outline-variant text-on-surface font-headline-md text-headline-md rounded-lg hover:bg-surface-container-low flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">play_circle</span> Watch Demo
                 </button>
-<div class="relative flex py-4 items-center mb-stack-md">
-<div class="flex-grow border-t border-outline-variant"></div>
-<span class="flex-shrink mx-4 text-on-surface-variant font-mono-sm uppercase tracking-wider">or email</span>
-<div class="flex-grow border-t border-outline-variant"></div>
 </div>
-<!-- Form -->
-<form class="space-y-stack-md">
-<div>
-<label class="block font-label-md text-on-surface-variant mb-1.5" for="full_name">Full Name</label>
-<input class="w-full bg-surface-container border border-outline-variant rounded-lg px-4 py-2.5 font-body-md focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-outline-variant" id="full_name" name="full_name" placeholder="Linus Torvalds" type="text"/>
+<!-- Dashboard Preview -->
+<div class="reveal mt-20 relative max-w-5xl mx-auto group" style="animation-delay: 0.5s;">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-[20px] blur opacity-15 group-hover:opacity-30 transition duration-1000"></div>
+<div class="relative bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-[1.01]">
+<img alt="EngineerHub Dashboard Preview" class="w-full aspect-[16/9] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdqKzIkbDAXIVa8gz_7qR-LQBEsb6oYRpZBZz03RJU4OuzQE214s3sC8Nw8CFUgSc2z7k8k_JEGErAGV26nLjsyhoskZk6ALot1tm_k4wM8ZK_1oDrjdsQ57jGcbhKyRkZUH1zwSmQUtAt5w7Bs0Xk9RdeqMJmq673bhiO4FVZTfL5eil2HYGf8OkvpDdPfJLKMgitva73KzUZHdxtzbbjiNjobsUG4-S4Zx-HypHlfgQJ93qoXdlxxUPzVttVm6Jq2kyo_IkKwfgB"/>
+<!-- AI Overlay UI Simulation -->
+<div class="absolute top-1/4 right-8 w-64 p-4 glass-panel rounded-lg shadow-xl border-l-4 border-secondary-container animate-bounce-subtle">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary text-sm">auto_awesome</span>
+<span class="text-mono-sm font-mono-sm text-secondary">AI Insight</span>
 </div>
-<div>
-<label class="block font-label-md text-on-surface-variant mb-1.5" for="work_email">Work Email</label>
-<input class="w-full bg-surface-container border border-outline-variant rounded-lg px-4 py-2.5 font-body-md focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-outline-variant" id="work_email" name="work_email" placeholder="name@company.com" type="email"/>
-</div>
-<div>
-<div class="flex justify-between items-center mb-1.5">
-<label class="block font-label-md text-on-surface-variant" for="password">Password</label>
-</div>
-<input class="w-full bg-surface-container border border-outline-variant rounded-lg px-4 py-2.5 font-body-md focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-outline-variant" id="password" name="password" placeholder="••••••••" type="password"/>
-<p class="mt-2 font-body-sm text-on-surface-variant flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">info</span>
-                            Minimum 8 characters
-                        </p>
-</div>
-<button class="w-full bg-primary text-on-primary font-label-md py-3 rounded-lg shadow-sm hover:opacity-90 active:transform active:scale-[0.98] transition-all mt-stack-lg" type="submit">
-                        Create Account
-                    </button>
-</form>
-<!-- Compliance -->
-<div class="mt-stack-lg text-center">
-<p class="font-body-sm text-on-surface-variant leading-relaxed">
-                        By signing up, you agree to our 
-                        <a class="text-primary hover:underline" href="#">Terms of Service</a> 
-                        and 
-                        <a class="text-primary hover:underline" href="#">Privacy Policy</a>.
-                    </p>
+<p class="text-body-sm font-body-sm text-on-surface">Contradiction found in Structural Specs vs. Field Report #402.</p>
 </div>
 </div>
-<!-- Login Link -->
-<div class="mt-stack-lg text-center">
-<p class="font-body-md text-on-surface-variant">
-                    Already have an account? 
-                    <a class="text-primary font-medium hover:underline" href="#">Log In</a>
-</p>
 </div>
 </div>
+</section>
+<!-- Section 3: Social Proof -->
+<section class="py-16 bg-surface-container-low border-y border-outline-variant" id="trust">
+<div class="container-max mx-auto px-margin-desktop">
+<p class="text-label-md font-label-md text-center text-outline mb-10 uppercase tracking-widest">Trusted by engineering teams at forward-thinking companies</p>
+<div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+<div class="reveal flex items-center gap-2 text-headline-md font-bold text-on-surface hover:scale-105 transition-transform cursor-default">
+<span class="material-symbols-outlined text-primary">rocket_launch</span> NOVA TECH
+                </div>
+<div class="reveal flex items-center gap-2 text-headline-md font-bold text-on-surface hover:scale-105 transition-transform cursor-default" style="animation-delay: 0.1s;">
+<span class="material-symbols-outlined text-primary">architecture</span> GLOBAL BUILD
+                </div>
+<div class="reveal flex items-center gap-2 text-headline-md font-bold text-on-surface hover:scale-105 transition-transform cursor-default" style="animation-delay: 0.2s;">
+<span class="material-symbols-outlined text-primary">precision_manufacturing</span> CORE DYNAMICS
+                </div>
+<div class="reveal flex items-center gap-2 text-headline-md font-bold text-on-surface hover:scale-105 transition-transform cursor-default" style="animation-delay: 0.3s;">
+<span class="material-symbols-outlined text-primary">energy_savings_leaf</span> ECO-GRID
+                </div>
+<div class="reveal flex items-center gap-2 text-headline-md font-bold text-on-surface hover:scale-105 transition-transform cursor-default" style="animation-delay: 0.4s;">
+<span class="material-symbols-outlined text-primary">layers</span> QUANTUM LABS
+                </div>
+</div>
+</div>
+</section>
+<!-- Section 2: Features Grid -->
+<section class="py-24 bg-white" id="features">
+<div class="container-max mx-auto px-margin-desktop">
+<div class="reveal flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-2xl">
+<h2 class="text-headline-xl font-headline-xl text-on-surface mb-4">Built for technical precision</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Stop hunting for documents. Start finding answers. Our platform is engineered to handle the complexity of technical research.</p>
+</div>
+<button class="nav-link text-label-md font-label-md text-primary flex items-center gap-1">View all capabilities <span class="material-symbols-outlined text-[16px]">open_in_new</span></button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Feature 1 -->
+<div class="reveal md:col-span-8 group relative bg-surface-container-low rounded-xl p-8 overflow-hidden hover:bg-surface-container transition-all duration-300 border border-transparent hover:border-outline-variant hover:shadow-md">
+<div class="relative z-10">
+<span class="p-3 bg-white rounded-lg inline-flex mb-6 shadow-sm group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-primary">science</span>
+</span>
+<h3 class="text-headline-lg font-headline-lg mb-2">Research Hub</h3>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-sm">Organize PDFs, links, and notes with automated AI tagging and vector search.</p>
+</div>
+<div class="absolute bottom-[-20px] right-8 w-1/2 hidden md:block translate-y-8 group-hover:translate-y-4 transition-transform duration-500">
+<div class="bg-white rounded-t-lg shadow-xl border border-outline-variant p-4">
+<div class="flex items-center gap-4 border-b border-outline-variant pb-3 mb-3">
+<div class="w-8 h-10 bg-error/10 flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-error text-[20px]">picture_as_pdf</span>
+</div>
+<div class="flex-1">
+<div class="h-2 w-24 bg-surface-container-high rounded mb-1"></div>
+<div class="h-2 w-16 bg-surface-container rounded"></div>
+</div>
+<span class="text-mono-sm font-mono-sm text-primary">Tagging...</span>
+</div>
+<div class="space-y-2">
+<div class="h-2 w-full bg-surface-container rounded"></div>
+<div class="h-2 w-3/4 bg-surface-container rounded"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="reveal md:col-span-4 bg-primary text-on-primary rounded-xl p-8 flex flex-col justify-between overflow-hidden relative group hover:shadow-lg transition-all" style="animation-delay: 0.1s;">
+<div class="absolute top-0 right-0 p-8 opacity-20 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px]">verified</span>
+</div>
+<div class="relative z-10">
+<span class="p-3 bg-white/10 rounded-lg inline-flex mb-6 border border-white/20 group-hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-on-primary">verified</span>
+</span>
+<h3 class="text-headline-lg font-headline-lg mb-2">Quality Checks</h3>
+<p class="text-body-md font-body-md text-on-primary/80">Instantly detect conflicting claims across hundreds of technical sources.</p>
+</div>
+<div class="mt-12 relative z-10">
+<div class="flex items-center gap-2 bg-error-container/20 p-2 rounded border border-error/30 text-error-container">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+<span class="text-mono-sm font-mono-sm">2 Contradictions detected</span>
+</div>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="reveal md:col-span-4 bg-white border border-outline-variant rounded-xl p-8 hover:shadow-lg hover:border-primary/30 transition-all group" style="animation-delay: 0.2s;">
+<span class="p-3 bg-secondary-container/10 rounded-lg inline-flex mb-6 border border-secondary-container/20 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary">description</span>
+</span>
+<h3 class="text-headline-lg font-headline-lg mb-2">Live Docs</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">Collaborative editor with integrated AI assist and automated research citations.</p>
+<div class="mt-8 flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-blue-500"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-green-500"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-orange-500 flex items-center justify-center text-white text-[10px]">+3</div>
+</div>
+</div>
+<!-- Feature 4 -->
+<div class="reveal md:col-span-8 ai-gradient-border rounded-xl p-8 flex flex-col md:flex-row gap-8 items-center group hover:shadow-md transition-shadow" style="animation-delay: 0.3s;">
+<div class="flex-1">
+<span class="p-3 bg-secondary-container/10 rounded-lg inline-flex mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</span>
+<h3 class="text-headline-lg font-headline-lg mb-2">Contextual AI Assistant</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">Ask questions grounded in your project's specific dataset. No hallucinations, only citations.</p>
+</div>
+<div class="w-full md:w-1/2 bg-surface-container-low p-4 rounded-lg border border-outline-variant shadow-inner transition-transform group-hover:scale-[1.02]">
+<div class="flex items-start gap-3 mb-4">
+<div class="w-6 h-6 rounded bg-on-surface flex items-center justify-center text-white text-[10px]">ME</div>
+<p class="text-body-sm font-body-sm bg-white p-2 rounded-md shadow-sm">What's the max payload for the V2 housing?</p>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+</div>
+<div class="flex-1">
+<p class="text-body-sm font-body-sm text-on-surface mb-2">Based on <span class="text-primary font-bold">Specs_v2.pdf (p.12)</span>, the max payload is 450kg.</p>
+<div class="h-1 w-full bg-primary/20 rounded overflow-hidden">
+<div class="h-full bg-primary w-1/2 rounded animate-shimmer" style="background-size: 200% 100%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Workflow Steps -->
+<section class="py-24 bg-surface-container-lowest" id="workflow">
+<div class="container-max mx-auto px-margin-desktop">
+<div class="reveal text-center mb-16">
+<h2 class="text-headline-xl font-headline-xl text-on-surface mb-4">The Workflow for Breakthroughs</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">From messy research to boardroom-ready reports in three steps.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+<!-- Connector Line -->
+<div class="hidden md:block absolute top-1/4 left-0 w-full h-[2px] bg-outline-variant/30 -z-0"></div>
+<!-- Step 1 -->
+<div class="reveal relative z-10 flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full bg-white border-2 border-primary flex items-center justify-center mb-6 shadow-md text-headline-lg text-primary font-bold group-hover:bg-primary group-hover:text-white transition-all duration-300">1</div>
+<h4 class="text-headline-md font-headline-md mb-3">Collect</h4>
+<p class="text-body-md font-body-md text-on-surface-variant px-4">Upload research from any source—CAD files, PDFs, or field notes. Our hub handles the parsing.</p>
+</div>
+<!-- Step 2 -->
+<div class="reveal relative z-10 flex flex-col items-center text-center group" style="animation-delay: 0.1s;">
+<div class="w-16 h-16 rounded-full bg-white border-2 border-primary flex items-center justify-center mb-6 shadow-md text-headline-lg text-primary font-bold group-hover:bg-primary group-hover:text-white transition-all duration-300">2</div>
+<h4 class="text-headline-md font-headline-md mb-3">Analyze</h4>
+<p class="text-body-md font-body-md text-on-surface-variant px-4">AI identifies critical insights, highlights contradictions, and maps technical relationships automatically.</p>
+</div>
+<!-- Step 3 -->
+<div class="reveal relative z-10 flex flex-col items-center text-center group" style="animation-delay: 0.2s;">
+<div class="w-16 h-16 rounded-full bg-white border-2 border-primary flex items-center justify-center mb-6 shadow-md text-headline-lg text-primary font-bold group-hover:bg-primary group-hover:text-white transition-all duration-300">3</div>
+<h4 class="text-headline-md font-headline-md mb-3">Create</h4>
+<p class="text-body-md font-body-md text-on-surface-variant px-4">Build technical reports in a live editor with AI-suggested content and linked citations for full auditability.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-24 px-margin-desktop relative overflow-hidden">
+<div class="reveal container-max mx-auto relative z-10 bg-on-surface rounded-[32px] p-12 md:p-24 text-center">
+<h2 class="text-headline-xl font-headline-xl text-white mb-6 md:text-[48px]">Ready to streamline your engineering workflow?</h2>
+<p class="text-body-lg font-body-lg text-white/70 max-w-2xl mx-auto mb-12">Join over 1,500 engineering teams who have moved their research and documentation to EngineerHub.</p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+<button class="btn-scale w-full sm:w-auto px-10 py-5 bg-primary text-white font-headline-md text-headline-md rounded-lg shadow-lg hover:bg-surface-tint">Start for Free</button>
+<button class="btn-scale w-full sm:w-auto px-10 py-5 bg-transparent border border-white/20 text-white font-headline-md text-headline-md rounded-lg hover:bg-white/10">Contact Sales</button>
+</div>
+<p class="mt-8 text-mono-sm font-mono-sm text-white/40">No credit card required. Unlimited viewers on free plan.</p>
+</div>
+</section>
 </main>
-<!-- Shared Footer Component -->
-<footer class="bg-background dark:bg-background border-t border-outline-variant dark:border-outline">
-<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-stack-lg max-w-container-max mx-auto gap-stack-md">
-<div class="text-label-md font-label-md font-bold text-on-surface-variant">
-                EngineerHub
-            </div>
-<div class="flex flex-wrap justify-center gap-stack-md">
-<a class="text-on-surface-variant font-body-sm hover:text-primary transition-colors cursor-pointer" href="#">Privacy Policy</a>
-<a class="text-on-surface-variant font-body-sm hover:text-primary transition-colors cursor-pointer" href="#">Terms of Service</a>
-<a class="text-on-surface-variant font-body-sm hover:text-primary transition-colors cursor-pointer" href="#">Security</a>
-<a class="text-on-surface-variant font-body-sm hover:text-primary transition-colors cursor-pointer" href="#">Cookie Settings</a>
+<footer class="bg-surface-container py-16 px-margin-desktop border-t border-outline-variant">
+<div class="container-max mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+<div class="max-w-xs">
+<div class="flex items-center gap-stack-sm mb-6 cursor-pointer group">
+<span class="text-primary material-symbols-outlined text-[24px] group-hover:rotate-12 transition-transform">terminal</span>
+<span class="text-headline-md font-headline-md font-bold text-on-surface">EngineerHub</span>
 </div>
-<div class="text-on-surface-variant font-body-sm">
-                © 2024 EngineerHub. All rights reserved.
-            </div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-6">The definitive workspace for technical research and collaboration, built for the next generation of engineers.</p>
+<div class="flex gap-4">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">rss_feed</span></a>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+<div>
+<h5 class="text-label-md font-label-md font-bold mb-4 uppercase">Product</h5>
+<ul class="space-y-3 text-body-sm font-body-sm text-on-surface-variant">
+<li><a class="nav-link inline-block hover:text-primary transition-colors" href="#">Features</a></li>
+<li><a class="nav-link inline-block hover:text-primary transition-colors" href="#">Security</a></li>
+<li><a class="nav-link inline-block hover:text-primary transition-colors" href="#">API</a></li>
+<li><a class="nav-link inline-block hover:text-primary transition-colors" href="#">Integrations</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-label-md font-label-md font-bold mb-4 uppercase">Resources</h5>
+<ul class="space-y-3 text-body-sm font-body-sm text-on-surface-variant">
+<li><a class="nav-link inline-block hover:text-primary transition-colors" href="#">Docs</a></li>
+<li><a class="nav-link inline-block hover:text-primary transition-colors" href="#">Blog</a></li>
+<li><a class="nav-link inline-block hover:text-primary transition-colors" href="#">Case Studies</a></li>
+<li><a class="nav-link inline-block hover:text-primary transition-colors" href="#">Community</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-label-md font-label-md font-bold mb-4 uppercase">Company</h5>
+<ul class="space-y-3 text-body-sm font-body-sm text-on-surface-variant">
+<li><a class="nav-link inline-block hover:text-primary transition-colors" href="#">About</a></li>
+<li><a class="nav-link inline-block hover:text-primary transition-colors" href="#">Careers</a></li>
+<li><a class="nav-link inline-block hover:text-primary transition-colors" href="#">Legal</a></li>
+<li><a class="nav-link inline-block hover:text-primary transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container-max mx-auto mt-16 pt-8 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-4 text-mono-sm font-mono-sm text-outline">
+<p>© 2024 EngineerHub Technologies Inc. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+</div>
 </div>
 </footer>
 <script>
-        // Simple form validation and micro-interactions
-        document.querySelector('form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = e.target.querySelector('button[type="submit"]');
-            const originalText = btn.innerText;
-            
-            // Visual feedback
-            btn.innerHTML = `
-                <svg class="animate-spin h-5 w-5 text-white mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-            `;
-            btn.disabled = true;
+    document.addEventListener('DOMContentLoaded', () => {
+        // Intersection Observer for scroll reveal animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                alert('Account creation simulation initiated.');
-            }, 1500);
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Once animated, stop observing to keep it visible
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
         });
 
-        // Toggle focus state aesthetics
-        const inputs = document.querySelectorAll('input');
-        inputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                input.parentElement.querySelector('label').classList.add('text-primary');
-            });
-            input.addEventListener('blur', () => {
-                input.parentElement.querySelector('label').classList.remove('text-primary');
-            });
+        // Navigation background opacity on scroll
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
         });
-    </script>
+    });
+</script>
 </body></html>

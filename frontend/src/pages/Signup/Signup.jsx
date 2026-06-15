@@ -160,3 +160,89 @@ function Signup() {
 }
 
 export default Signup;
+
+
+/*
+==============================================================================
+SIGNUP PAGE DOCUMENTATION
+==============================================================================
+
+Purpose:
+- Naya user account create karna.
+
+Frontend Fields:
+1. fullName
+2. email
+3. password
+
+Expected API Endpoint:
+POST /api/auth/signup
+
+Request Body:
+
+{
+  "fullName": "John Doe",
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+Success Response (201 Created):
+
+{
+  "success": true,
+  "message": "Account created successfully",
+  "user": {
+    "id": 1,
+    "fullName": "John Doe",
+    "email": "john@example.com"
+  },
+  "token": "jwt_token_here"
+}
+
+Possible Error Responses:
+
+Email already exists:
+
+{
+  "success": false,
+  "message": "Email already registered"
+}
+
+Validation Error:
+
+{
+  "success": false,
+  "message": "Invalid input data"
+}
+
+Frontend Tasks During Integration:
+
+1. Create state variables:
+   - fullName
+   - email
+   - password
+   - loading
+   - error
+
+2. Convert inputs into controlled components.
+
+3. On form submit:
+   - Prevent default form submit
+   - Call signup API using fetch/axios
+
+4. Show loading state:
+   Button Text:
+   "Creating Account..."
+
+5. Handle Success:
+   - Store JWT token
+   - Store user info
+   - Redirect to Dashboard
+
+6. Handle Errors:
+   - Show API error message
+   - Highlight invalid fields
+
+
+==============================================================================
+*/

@@ -206,3 +206,98 @@ function Login() {
 }
 
 export default Login;
+
+/*
+==============================================================================
+LOGIN PAGE DOCUMENTATION
+==============================================================================
+
+Purpose:
+- Existing user authentication.
+
+Frontend Fields:
+
+1. email
+2. password
+
+Expected API Endpoint:
+
+POST /api/auth/login
+
+Request Body:
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+Success Response (200 OK):
+
+{
+  "success": true,
+  "message": "Login successful",
+  "token": "jwt_token_here",
+  "user": {
+    "id": 1,
+    "fullName": "John Doe",
+    "email": "john@example.com"
+  }
+}
+
+Invalid Credentials Response:
+
+{
+  "success": false,
+  "message": "Invalid email or password"
+}
+
+Frontend Tasks During Integration:
+
+1. Create state variables:
+   - email
+   - password
+   - loading
+   - error
+
+2. Convert inputs into controlled components.
+
+3. On form submit:
+   - Prevent default form submit
+   - Call login API
+
+4. Show loading state:
+   Button Text:
+   "Signing In..."
+
+5. Handle Success:
+   - Save JWT token
+   - Save user information
+   - Redirect to Dashboard
+
+6. Handle Failure:
+   - Show error message
+
+Authentication Storage Strategy:
+
+Option A:
+localStorage
+
+localStorage.setItem("token", token)
+
+Option B:
+HTTP Only Cookies (Recommended for Production)
+
+Protected Routes:
+
+Dashboard
+Projects
+Workspace
+Research Hub
+Profile
+
+These routes should only be accessible if user is authenticated.
+
+
+
+==============================================================================
+*/

@@ -1,5 +1,5 @@
 import Navbar from "../../components/layout/Navbar";
-// import Footer from "../../components/layout/Footer";
+import Footer from "../../components/layout/Footer";
 
 // import HeroSection from "../../components/home/HeroSection";
 import HeroSection from "../../components/home/HeroSection";
@@ -22,7 +22,7 @@ function Home() {
         <CTASection />
       </main>
 
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
