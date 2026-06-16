@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EngineerHub Onboarding - Skills</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://fonts.cdnfonts.com/s/93121/Geist-Regular.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://fonts.cdnfonts.com/s/93121/Geist-Medium.woff') format('woff');
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: 'Geist';
+            src: url('https://fonts.cdnfonts.com/s/93121/Geist-Bold.woff') format('woff');
+            font-weight: 700;
+        }
+        
+        body {
+            font-family: 'Geist', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .skill-card-checkbox:checked + .skill-card-content {
+            border-color: #0050cb;
+            box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.12);
+            background-color: #ffffff;
+        }
+
+        .skill-card-checkbox:checked + .skill-card-content .check-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#eff1f3",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#dae1ff",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "on-secondary-container": "#5c647a",
+                        "error": "#ba1a1a",
+                        "surface": "#f7f9fb",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#63738a",
+                        "surface-dim": "#d8dadc",
+                        "surface-tint": "#0054d6",
+                        "background": "#f7f9fb",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "primary": "#0050cb",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#4b5a70",
+                        "surface-container-low": "#f2f4f6",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "surface-container": "#eceef0",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#424656",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed": "#dae2fd",
+                        "on-primary-fixed": "#001849",
+                        "inverse-surface": "#2d3133",
+                        "on-primary-container": "#f8f7ff",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "secondary-container": "#dae2fd",
+                        "outline": "#727687",
+                        "inverse-primary": "#b3c5ff",
+                        "surface-variant": "#e0e3e5",
+                        "on-background": "#191c1e",
+                        "on-secondary-fixed": "#131b2e",
+                        "primary-container": "#0066ff",
+                        "on-tertiary-container": "#f6f8ff",
+                        "outline-variant": "#c2c6d8",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "surface-bright": "#f7f9fb",
+                        "secondary": "#565e74",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "max-width-onboarding": "480px",
+                        "base": "8px",
+                        "xl": "80px",
+                        "sm": "12px",
+                        "lg": "48px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "body-md": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "body-sm": ["Geist"],
+                        "button": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "button": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col overflow-x-hidden">
+
+<!-- Progress Bar at top -->
+<div class="fixed top-0 left-0 w-full h-1 bg-surface-container/50 z-[60]">
+<div class="h-full bg-primary transition-all duration-500 ease-in-out" style="width: 20%;"></div>
+</div>
+<!-- Top AppBar -->
+<header class="fixed top-0 w-full bg-surface/40 backdrop-blur-md border-b border-outline-variant/30 z-50 flex justify-between items-center h-16 px-margin-mobile md:px-lg">
+<div class="font-headline-md text-headline-md font-bold text-primary">EngineerHub</div>
+<div class="hidden md:flex gap-6 items-center">
+<span class="font-body-md text-body-md text-on-surface-variant cursor-pointer hover:text-primary transition-colors duration-200">Skip for now</span>
+</div>
+</header>
+<main class="flex-grow flex items-start justify-center pt-xl pb-24 px-margin-mobile relative z-10">
+<div class="max-w-max-width-onboarding w-full space-y-md animate-in fade-in slide-in-from-bottom-4 duration-700">
+<!-- Context Header -->
+<div class="space-y-xs text-center md:text-left bg-white/40 backdrop-blur-sm p-4 rounded-xl">
+<div class="flex items-center gap-2 justify-center md:justify-start">
+<span class="font-label-md text-label-md px-2 py-1 bg-primary/10 text-primary rounded-md uppercase tracking-wider">Step 1 of 5</span>
+<span class="font-label-md text-label-md text-on-surface-variant">• Estimated completion: 2 mins</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">What are your core skills?</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Select all that apply. We'll use this to customize your experience.</p>
+</div>
+<!-- Skills Grid -->
+<form class="grid grid-cols-2 gap-4 py-4 custom-scrollbar" id="skillsForm">
+<!-- Multi-select Cards -->
+<script>
+                const skills = [
+                    "AI/ML", "Deep Learning", "Computer Vision", "NLP", "Generative AI", 
+                    "Backend", "Frontend", "Full Stack", "Mobile", "DevOps", 
+                    "Cloud", "Cybersecurity", "Blockchain", "Database", "API", 
+                    "Data Science", "Data Engineering", "Embedded Systems", "IoT", "System Design"
+                ];
+                
+                document.write(skills.map(skill => `
+                    <label class="relative cursor-pointer group">
+                        <input type="checkbox" name="skills" value="${skill}" class="skill-card-checkbox sr-only">
+                        <div class="skill-card-content p-4 rounded-xl border border-outline-variant bg-white/80 backdrop-blur-sm transition-all duration-200 ease-in-out hover:border-primary/50 hover:bg-white flex items-center justify-between">
+                            <span class="font-body-md text-body-md text-on-surface">${skill}</span>
+                            <div class="check-icon opacity-0 scale-75 transition-all duration-200 text-primary">
+                                <span class="material-symbols-outlined text-[20px]">check_circle</span>
+                            </div>
+                        </div>
+                    </label>
+                `).join(''));
+            </script>
+</form>
+</div>
+</main>
+<!-- Footer Action Bar -->
+<footer class="fixed bottom-0 w-full bg-surface/60 backdrop-blur-md border-t border-outline-variant/20 z-50">
+<div class="flex justify-between items-center py-4 px-margin-mobile md:px-lg max-w-max-width-onboarding mx-auto w-full">
+<button class="text-secondary border border-outline-variant px-6 py-2 rounded-lg font-button text-button hover:bg-white/80 transition-all active:scale-95">
+            Previous
+        </button>
+<button class="bg-primary text-on-primary px-8 py-2 rounded-lg font-button text-button shadow-sm hover:shadow-md hover:bg-primary-container transition-all active:scale-95" onclick="handleNext()">
+            Next Step
+        </button>
+</div>
+</footer>
+<script>
+    function handleNext() {
+        const checked = document.querySelectorAll('input[name="skills"]:checked');
+        if (checked.length === 0) {
+            alert('Please select at least one skill to continue.');
+            return;
+        }
+        console.log('Skills selected:', Array.from(checked).map(c => c.value));
+    }
+
+    // Add visual feedback on click
+    document.querySelectorAll('.skill-card-content').forEach(card => {
+        card.addEventListener('mousedown', () => {
+            card.style.transform = 'scale(0.98)';
+        });
+        card.addEventListener('mouseup', () => {
+            card.style.transform = 'scale(1)';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'scale(1)';
+        });
+    });
+
+    /**
+     * WebGL Shader Component Handler
+     */
+    class WebGLShader extends HTMLElement {
+        constructor() {
+            super();
+            this.canvas = document.createElement('canvas');
+            this.canvas.style.display = 'block';
+            this.canvas.style.width = '100%';
+            this.canvas.style.height = '100%';
+        }
+
+        connectedCallback() {
+            this.appendChild(this.canvas);
+            this.initGL();
+            window.addEventListener('resize', () => this.resize());
+        }
+
+        initGL() {
+            const gl = this.canvas.getContext('webgl');
+            if (!gl) return;
+
+            const vs = `
+                attribute vec2 position;
+                varying vec2 v_texCoord;
+                void main() {
+                    v_texCoord = position * 0.5 + 0.5;
+                    v_texCoord.y = 1.0 - v_texCoord.y;
+                    gl_Position = vec4(position, 0.0, 1.0);
+                }
+            `;
+            const fsSource = this.querySelector('script[type="x-shader/x-fragment"]').textContent;
+
+            const createShader = (gl, type, source) => {
+                const shader = gl.createShader(type);
+                gl.shaderSource(shader, source);
+                gl.compileShader(shader);
+                return shader;
+            };
+
+            const program = gl.createProgram();
+            gl.attachShader(program, createShader(gl, gl.VERTEX_SHADER, vs));
+            gl.attachShader(program, createShader(gl, gl.FRAGMENT_SHADER, fsSource));
+            gl.linkProgram(program);
+            gl.useProgram(program);
+
+            const buffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
+
+            const positionLoc = gl.getAttribLocation(program, 'position');
+            gl.enableVertexAttribArray(positionLoc);
+            gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
+
+            const timeLoc = gl.getUniformLocation(program, 'u_time');
+            const resLoc = gl.getUniformLocation(program, 'u_resolution');
+
+            this.resize();
+
+            const render = (time) => {
+                gl.uniform1f(timeLoc, time * 0.001);
+                gl.uniform2f(resLoc, this.canvas.width, this.canvas.height);
+                gl.drawArrays(gl.TRIANGLES, 0, 6);
+                requestAnimationFrame(render);
+            };
+            requestAnimationFrame(render);
+        }
+
+        resize() {
+            this.canvas.width = this.clientWidth * window.devicePixelRatio;
+            this.canvas.height = this.clientHeight * window.devicePixelRatio;
+            const gl = this.canvas.getContext('webgl');
+            if (gl) gl.viewport(0, 0, this.canvas.width, this.canvas.height);
+        }
+    }
+    customElements.define('webgl-shader', WebGLShader);
+</script>
+</body></html>
