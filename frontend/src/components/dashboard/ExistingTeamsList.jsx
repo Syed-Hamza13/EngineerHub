@@ -1,7 +1,7 @@
 function ExistingTeamsList({
   teams,
   selectedTeam,
-  setSelectedTeam,
+  setSelectedTeam, 
 }) {
   return (
     <div className="border border-slate-200 rounded-xl p-4 bg-slate-50">
