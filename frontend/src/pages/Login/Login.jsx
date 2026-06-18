@@ -1,6 +1,73 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../services/authApi";
 
 function Login() {
+
+  const navigate = useNavigate();
+
+
+const [formData,setFormData] = useState({
+
+    email:"",
+    password:""
+
+});
+
+
+const [loading,setLoading] = useState(false);
+
+
+const [error,setError] = useState("");
+
+const handleSubmit = async(e)=>{
+
+    e.preventDefault();
+
+
+    try{
+
+        setLoading(true);
+        setError("");
+
+
+        const response =
+        await login(formData);
+
+
+
+        localStorage.setItem(
+            "token",
+            response.token
+        );
+
+
+        localStorage.setItem(
+            "user",
+            JSON.stringify(response.user)
+        );
+
+
+
+        navigate("/dashboard");
+
+
+    }
+    catch(error){
+
+        setError(
+            error.response?.data?.message ||
+            "Login failed"
+        );
+
+    }
+    finally{
+
+        setLoading(false);
+
+    }
+
+};
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
 
@@ -77,9 +144,21 @@ function Login() {
 
               </div>
 
-              {/* Form */}
-              <form className="space-y-5">
+              {
+              error && (
+              
+              <p className="text-red-500 text-sm">
+              {error}
+              </p>
 
+              )
+              }
+
+              {/* Form */}
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-5"
+                >
                 <div>
                   <label className="block mb-2 text-sm font-medium text-slate-700">
                     Work Email
@@ -89,6 +168,13 @@ function Login() {
                     type="email"
                     placeholder="name@company.com"
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    value={formData.email}
+                    onChange={(e)=>
+                    setFormData({
+                    ...formData,
+                    email:e.target.value
+                    })
+                    }
                   />
                 </div>
 
@@ -113,6 +199,13 @@ function Login() {
                     type="password"
                     placeholder="••••••••"
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    value={formData.password}
+                    onChange={(e)=>
+                    setFormData({
+                    ...formData,
+                    password:e.target.value
+                    })
+                    }
                   />
 
                 </div>
@@ -121,7 +214,13 @@ function Login() {
                   type="submit"
                   className="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition"
                 >
-                  Sign In
+                  {
+                  loading
+                  ?
+                  "Signing In..."
+                  :
+                  "Sign In"
+                  }
                 </button>
 
               </form>

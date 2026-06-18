@@ -1,6 +1,72 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { signup } from "../../services/authApi";
 
 function Signup() {
+  const navigate = useNavigate();
+
+
+const [formData,setFormData] = useState({
+
+    fullName:"",
+    email:"",
+    password:""
+
+});
+
+
+const [loading,setLoading] = useState(false);
+
+const [error,setError] = useState("");
+
+const handleSubmit = async(e)=>{
+
+    e.preventDefault();
+
+
+    try{
+
+        setLoading(true);
+        setError("");
+
+
+        const response =
+        await signup(formData);
+
+
+
+        localStorage.setItem(
+            "token",
+            response.token
+        );
+
+
+        localStorage.setItem(
+            "user",
+            JSON.stringify(response.user)
+        );
+
+
+        navigate("/dashboard");
+
+
+    }
+    catch(error){
+
+        setError(
+            error.response?.data?.message ||
+            "Signup failed"
+        );
+
+    }
+    finally{
+
+        setLoading(false);
+
+    }
+
+};
+
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
       {/* Header */}
@@ -59,7 +125,10 @@ function Signup() {
             </div>
             {/* Form */}
 
-            <form className="space-y-5 mt-2">
+            <form 
+            onSubmit={handleSubmit}
+            className="space-y-5 mt-2"
+            >
               <div>
                 <label className="block mb-2 text-sm font-medium text-slate-700">
                   Full Name
@@ -69,6 +138,8 @@ function Signup() {
                   type="text"
                   placeholder="Linus Torvalds"
                   className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  value={formData.fullName}
+                  onChange={(e)=>setFormData({...formData,fullName:e.target.value})}
                 />
               </div>
 
@@ -81,6 +152,16 @@ function Signup() {
                   type="email"
                   placeholder="name@company.com"
                   className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  value={formData.email}
+                    onChange={(e)=>
+                    setFormData({
+                    
+                    ...formData,
+                    
+                    email:e.target.value
+                    
+                    })
+                    }
                 />
               </div>
 
@@ -93,6 +174,8 @@ function Signup() {
                   type="password"
                   placeholder="••••••••"
                   className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  value={formData.password}
+                  onChange={(e)=>setFormData({...formData,password:e.target.value})}
                 />
 
                 <p className="mt-2 text-xs text-slate-500 flex items-center gap-1">
@@ -107,8 +190,14 @@ function Signup() {
                 type="submit"
                 className="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition"
               >
-                Create Account
-              </button>
+                {
+                loading
+                ?
+                "Creating Account..."
+                :
+                "Create Account"
+
+                }              </button>
             </form>
 
             {/* Terms */}
