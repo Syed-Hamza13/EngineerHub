@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EngineerHub - Teams Management</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600;700&amp;family=Geist+Mono&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .geist-font {
+            font-family: 'Geist', sans-serif;
+        }
+        .geist-mono {
+            font-family: 'Geist Mono', monospace;
+        }
+    </style>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c2c6d8",
+                    "on-tertiary-container": "#e1fff6",
+                    "background": "#f8f9fa",
+                    "secondary-fixed": "#e8deff",
+                    "on-background": "#191c1d",
+                    "outline": "#727687",
+                    "on-tertiary-fixed-variant": "#005145",
+                    "on-tertiary-fixed": "#00201a",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#68fadd",
+                    "tertiary-container": "#00816f",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface": "#f8f9fa",
+                    "primary-fixed": "#dae1ff",
+                    "surface-container-low": "#f3f4f5",
+                    "inverse-on-surface": "#f0f1f2",
+                    "surface-tint": "#0054d6",
+                    "primary-container": "#0066ff",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#fcf6ff",
+                    "on-secondary-fixed": "#20005f",
+                    "tertiary": "#006657",
+                    "surface-dim": "#d9dadb",
+                    "secondary-fixed-dim": "#cdbdff",
+                    "secondary": "#632ce5",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "secondary-container": "#7c4dff",
+                    "inverse-primary": "#b3c5ff",
+                    "surface-container": "#edeeef",
+                    "on-primary-fixed": "#001849",
+                    "on-surface": "#191c1d",
+                    "on-secondary-fixed-variant": "#4f00d0",
+                    "tertiary-fixed-dim": "#44ddc1",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "on-error-container": "#93000a",
+                    "primary": "#0050cb",
+                    "surface-variant": "#e1e3e4",
+                    "surface-bright": "#f8f9fa",
+                    "on-surface-variant": "#424656",
+                    "on-primary-container": "#f8f7ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.8px",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "32px",
+                    "sidebar-width": "240px",
+                    "stack-md": "16px",
+                    "stack-lg": "24px",
+                    "margin-mobile": "16px",
+                    "stack-xs": "4px",
+                    "stack-sm": "8px",
+                    "container-max": "1200px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Geist"],
+                    "label-md": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "headline-xl": ["Geist"],
+                    "mono-sm": ["Geist Mono"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-md": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "mono-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-screen w-[240px] border-r border-outline-variant bg-surface flex flex-col py-stack-md z-50">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-on-surface">EngineerHub</h1>
+<p class="text-label-md font-label-md text-on-surface-variant opacity-70">Product Team v2</p>
+</div>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<!-- Dashboard (Inactive) -->
+<a class="flex items-center gap-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-3 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+<!-- Research Hub (Inactive) -->
+<a class="flex items-center gap-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-3 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">science</span>
+<span class="text-label-md font-label-md">Research Hub</span>
+</a>
+<!-- Tasks (Active for this Context: Teams/Workspace Management) -->
+<a class="flex items-center gap-stack-sm bg-primary-container/10 text-primary border-l-2 border-primary px-4 py-3 scale-[0.99] transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="text-label-md font-label-md">Teams</span>
+</a>
+<a class="flex items-center gap-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-3 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">description</span>
+<span class="text-label-md font-label-md">Docs</span>
+</a>
+<a class="flex items-center gap-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-3 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">smart_toy</span>
+<span class="text-label-md font-label-md">AI Assistant</span>
+</a>
+</nav>
+<div class="px-3 mt-auto space-y-1 pt-stack-md border-t border-outline-variant/30">
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-white py-2.5 rounded-lg text-label-md font-label-md mb-4 hover:bg-primary-container transition-all active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Project
+            </button>
+<a class="flex items-center gap-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-3 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-3 rounded-lg" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="text-label-md font-label-md">Support</span>
+</a>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant flex justify-between items-center px-margin-desktop z-40">
+<div class="flex items-center bg-surface-container-low border border-outline-variant px-3 py-1.5 rounded-lg w-96">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md w-full ml-2 text-on-surface-variant" placeholder="Search teams, researchers, or projects..." type="text"/>
+<span class="text-mono-sm font-mono-sm text-outline px-1.5 border border-outline-variant rounded bg-surface-container-high">/</span>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up headshot of a professional engineer in a bright, modern office with soft natural lighting. The person is smiling confidently, wearing a dark navy blazer over a clean white shirt. The background is slightly blurred, showing architectural blueprints and a high-end workstation, maintaining a clean and professional corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_H4pdtmOS2iJXpgrfmVtDpRtxlg9QgeMFnl5e2yvWm57fwEuh4FlhEcjXjSTrlWo1am0AuJ64GyS7nVDOCkEg3K3qDHUoerBnsO8Fw7jJ914n7tz_yaSH-904Bfcq5n2lSJSePv-IVsuzmZTntQlzRqbCBR4xI1cnt2nOvg8DtWtSyw6OEOsZ_oJ02czB4XlNHuISJa_iMoI_Iebf7x3rVRy5ZJ8iqADPer7GigWO6dt-Q600ZLGtYZR9O8bZrNWWWxSrRuFGVfqM"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[240px] mt-16 p-margin-desktop min-h-screen">
+<div class="max-w-[1200px] mx-auto">
+<!-- Page Header -->
+<div class="flex items-end justify-between mb-stack-lg">
+<div>
+<h2 class="text-headline-xl font-headline-xl text-on-surface geist-font">Teams</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Manage research teams and collaborators</p>
+</div>
+<button class="flex items-center gap-2 bg-primary text-white px-6 py-2.5 rounded-lg text-label-md font-label-md hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-[18px]">group_add</span>
+                    Create Team
+                </button>
+</div>
+<!-- Bento Grid - Team Stats Summary (Aesthetic addition) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-10">
+<div class="col-span-1 p-5 bg-surface-container-lowest border border-outline-variant rounded-xl">
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-1">Total Teams</p>
+<p class="text-headline-lg font-headline-lg text-on-surface geist-font">12</p>
+</div>
+<div class="col-span-1 p-5 bg-surface-container-lowest border border-outline-variant rounded-xl">
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-1">Active Collaborators</p>
+<p class="text-headline-lg font-headline-lg text-on-surface geist-font">48</p>
+</div>
+<div class="col-span-2 p-5 bg-primary-container/5 border border-primary/20 rounded-xl flex items-center justify-between">
+<div>
+<p class="text-body-sm font-body-sm text-primary mb-1">Pending Invitations</p>
+<p class="text-headline-lg font-headline-lg text-primary geist-font">7 <span class="text-body-md font-body-md opacity-60 ml-2">Awaiting response</span></p>
+</div>
+<span class="material-symbols-outlined text-primary text-[32px] opacity-40">mail</span>
+</div>
+</div>
+<!-- Teams Grid -->
+<section class="mb-14">
+<div class="flex items-center justify-between mb-stack-md">
+<h3 class="text-headline-md font-headline-md text-on-surface">Active Teams</h3>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded bg-surface-container border border-outline-variant">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">format_list_bulleted</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Team Card: Quantum Pioneers -->
+<div class="group bg-surface-container-lowest border border-outline-variant rounded-xl p-6 transition-all hover:border-primary/40 hover:shadow-xl hover:shadow-black/5 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-3">
+<span class="text-mono-sm font-mono-sm px-2 py-0.5 rounded bg-primary-container/10 text-primary border border-primary/20">Owner</span>
+</div>
+<div class="w-12 h-12 bg-surface-container-high rounded-lg mb-4 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[28px]">biotech</span>
+</div>
+<h4 class="text-headline-md font-headline-md text-on-surface mb-2 geist-font">Quantum Pioneers</h4>
+<p class="text-body-md font-body-md text-on-surface-variant mb-6 line-clamp-2">Researching fault-tolerant quantum algorithms and photonic computing architectures.</p>
+<div class="flex items-center gap-6 mb-6">
+<div class="flex flex-col">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Members</span>
+<span class="text-headline-md font-headline-md geist-font">12</span>
+</div>
+<div class="flex flex-col">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Projects</span>
+<span class="text-headline-md font-headline-md geist-font">5</span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 py-2 text-label-md font-label-md border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors">Invite</button>
+<button class="flex-1 py-2 text-label-md font-label-md bg-primary text-white rounded-lg hover:bg-primary-container transition-all">Open</button>
+</div>
+</div>
+<!-- Team Card: LLM Safety Group -->
+<div class="group bg-surface-container-lowest border border-outline-variant rounded-xl p-6 transition-all hover:border-primary/40 hover:shadow-xl hover:shadow-black/5 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-3">
+<span class="text-mono-sm font-mono-sm px-2 py-0.5 rounded bg-surface-container text-on-surface-variant border border-outline-variant">Collaborator</span>
+</div>
+<div class="w-12 h-12 bg-surface-container-high rounded-lg mb-4 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[28px]">security</span>
+</div>
+<h4 class="text-headline-md font-headline-md text-on-surface mb-2 geist-font">LLM Safety Group</h4>
+<p class="text-body-md font-body-md text-on-surface-variant mb-6 line-clamp-2">Developing robust alignment protocols and adversarial testing frameworks for large models.</p>
+<div class="flex items-center gap-6 mb-6">
+<div class="flex flex-col">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Members</span>
+<span class="text-headline-md font-headline-md geist-font">8</span>
+</div>
+<div class="flex flex-col">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Projects</span>
+<span class="text-headline-md font-headline-md geist-font">3</span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 py-2 text-label-md font-label-md border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors">Invite</button>
+<button class="flex-1 py-2 text-label-md font-label-md bg-primary text-white rounded-lg hover:bg-primary-container transition-all">Open</button>
+</div>
+</div>
+<!-- Team Card: DeFi Analytics -->
+<div class="group bg-surface-container-lowest border border-outline-variant rounded-xl p-6 transition-all hover:border-primary/40 hover:shadow-xl hover:shadow-black/5 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-3">
+<span class="text-mono-sm font-mono-sm px-2 py-0.5 rounded bg-surface-container text-on-surface-variant border border-outline-variant">Collaborator</span>
+</div>
+<div class="w-12 h-12 bg-surface-container-high rounded-lg mb-4 flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[28px]">payments</span>
+</div>
+<h4 class="text-headline-md font-headline-md text-on-surface mb-2 geist-font">DeFi Analytics</h4>
+<p class="text-body-md font-body-md text-on-surface-variant mb-6 line-clamp-2">Analyzing liquidity provision strategies and MEV extraction in decentralized markets.</p>
+<div class="flex items-center gap-6 mb-6">
+<div class="flex flex-col">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Members</span>
+<span class="text-headline-md font-headline-md geist-font">15</span>
+</div>
+<div class="flex flex-col">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Projects</span>
+<span class="text-headline-md font-headline-md geist-font">7</span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 py-2 text-label-md font-label-md border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors">Invite</button>
+<button class="flex-1 py-2 text-label-md font-label-md bg-primary text-white rounded-lg hover:bg-primary-container transition-all">Open</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Pending Invitations Section -->
+<section>
+<div class="flex items-center justify-between mb-stack-md">
+<h3 class="text-headline-md font-headline-md text-on-surface">Pending Invitations</h3>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-6 py-3.5 text-label-md font-label-md text-on-surface-variant">Email Address</th>
+<th class="px-6 py-3.5 text-label-md font-label-md text-on-surface-variant">Target Team</th>
+<th class="px-6 py-3.5 text-label-md font-label-md text-on-surface-variant">Sent Date</th>
+<th class="px-6 py-3.5 text-label-md font-label-md text-on-surface-variant">Status</th>
+<th class="px-6 py-3.5 text-label-md font-label-md text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-7 h-7 rounded-full bg-primary-container/20 flex items-center justify-center text-primary text-[11px] font-bold">JD</div>
+<span class="text-body-md font-body-md text-on-surface">jane.doe@research.io</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-md font-body-md text-on-surface-variant">Quantum Pioneers</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Oct 24, 2023</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-tertiary-container/10 text-tertiary text-xs font-medium border border-tertiary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary mr-1.5"></span>
+                                        Pending
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1.5 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+</button>
+<button class="p-1.5 hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-7 h-7 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary text-[11px] font-bold">MK</div>
+<span class="text-body-md font-body-md text-on-surface">m.knightley@vectors.ai</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-md font-body-md text-on-surface-variant">LLM Safety Group</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Oct 22, 2023</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-outline-variant/10 text-outline text-xs font-medium border border-outline/20">
+<span class="w-1.5 h-1.5 rounded-full bg-outline mr-1.5"></span>
+                                        Expired
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1.5 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+</button>
+<button class="p-1.5 hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-7 h-7 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary text-[11px] font-bold">AS</div>
+<span class="text-body-md font-body-md text-on-surface">a.smith@eth-labs.com</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-md font-body-md text-on-surface-variant">DeFi Analytics</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Oct 20, 2023</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-container/10 text-primary text-xs font-medium border border-primary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mr-1.5"></span>
+                                        Accepted
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="text-body-sm font-body-sm text-on-surface-variant opacity-50 italic">Processed</span>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-6 py-3 border-t border-outline-variant bg-surface-container-lowest flex items-center justify-between">
+<span class="text-label-md font-label-md text-on-surface-variant">Showing 3 of 12 invitations</span>
+<div class="flex items-center gap-2">
+<button class="p-1 rounded hover:bg-surface-container transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Insight Section (Thematic addition) -->
+<section class="mt-14">
+<div class="p-6 rounded-xl border border-primary/10 bg-primary-container/5 relative overflow-hidden">
+<div class="flex items-start gap-4">
+<div class="bg-primary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+</div>
+<div>
+<h4 class="text-headline-md font-headline-md text-on-surface geist-font mb-1 flex items-center gap-2">
+                                AI Team Optimizer
+                                <span class="text-mono-sm font-mono-sm text-primary uppercase tracking-widest text-[10px] bg-primary/10 px-1.5 py-0.5 rounded">BETA</span>
+</h4>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-2xl">
+                                Based on project velocity, <span class="font-semibold">Quantum Pioneers</span> could benefit from an additional Backend Specialist. We found 3 potential collaborators in your extended network with expertise in <span class="geist-mono text-primary bg-primary/5 px-1 rounded">Rust</span> and <span class="geist-mono text-primary bg-primary/5 px-1 rounded">Wasm</span>.
+                            </p>
+</div>
+<button class="ml-auto px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-label-md font-label-md hover:bg-white transition-colors">View Suggestions</button>
+</div>
+<!-- Decorative element for AI section -->
+<div class="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer Stats / Subtle Branding -->
+<footer class="ml-[240px] px-margin-desktop py-stack-md border-t border-outline-variant/30 flex items-center justify-between">
+<p class="text-label-md font-label-md text-on-surface-variant opacity-50">© 2023 EngineerHub. All rights reserved.</p>
+<div class="flex items-center gap-6">
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">API Docs</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">System Status</a>
+<div class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                All Systems Operational
+            </div>
+</div>
+</footer>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button, a').forEach(elem => {
+            elem.addEventListener('mousedown', () => {
+                elem.style.transform = 'scale(0.97)';
+            });
+            elem.addEventListener('mouseup', () => {
+                elem.style.transform = '';
+            });
+            elem.addEventListener('mouseleave', () => {
+                elem.style.transform = '';
+            });
+        });
+
+        // Search shortcut hint animation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '/') {
+                e.preventDefault();
+                document.querySelector('input').focus();
+            }
+        });
+    </script>
+</body></html>

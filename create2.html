@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Teams Management - EngineerHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600;700;800&amp;family=Geist+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c2c6d8",
+                        "on-tertiary-container": "#e1fff6",
+                        "background": "#f8f9fa",
+                        "secondary-fixed": "#e8deff",
+                        "on-background": "#191c1d",
+                        "outline": "#727687",
+                        "on-tertiary-fixed-variant": "#005145",
+                        "on-tertiary-fixed": "#00201a",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#68fadd",
+                        "tertiary-container": "#00816f",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface": "#f8f9fa",
+                        "primary-fixed": "#dae1ff",
+                        "surface-container-low": "#f3f4f5",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-tint": "#0054d6",
+                        "primary-container": "#0066ff",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#fcf6ff",
+                        "on-secondary-fixed": "#20005f",
+                        "tertiary": "#006657",
+                        "surface-dim": "#d9dadb",
+                        "secondary-fixed-dim": "#cdbdff",
+                        "secondary": "#632ce5",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "secondary-container": "#7c4dff",
+                        "inverse-primary": "#b3c5ff",
+                        "surface-container": "#edeeef",
+                        "on-primary-fixed": "#001849",
+                        "on-surface": "#191c1d",
+                        "on-secondary-fixed-variant": "#4f00d0",
+                        "tertiary-fixed-dim": "#44ddc1",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "on-error-container": "#93000a",
+                        "primary": "#0050cb",
+                        "surface-variant": "#e1e3e4",
+                        "surface-bright": "#f8f9fa",
+                        "on-surface-variant": "#424656",
+                        "on-primary-container": "#f8f7ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "32px",
+                        "sidebar-width": "240px",
+                        "stack-md": "16px",
+                        "stack-lg": "24px",
+                        "margin-mobile": "16px",
+                        "stack-xs": "4px",
+                        "stack-sm": "8px",
+                        "container-max": "1200px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "headline-xl": ["Geist"],
+                        "mono-sm": ["Geist Mono"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-md": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "mono-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
+        .sidebar-active { border-left: 2px solid #0050cb; }
+        .glass-panel { backdrop-filter: blur(8px); }
+        .ai-border { border: 1px solid rgba(124, 77, 255, 0.2); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-screen w-[240px] bg-surface border-r border-outline-variant flex flex-col py-stack-md z-50">
+<div class="px-6 mb-8">
+<h1 class="text-headline-md font-headline-md font-bold text-on-surface">EngineerHub</h1>
+<p class="text-label-md font-label-md text-on-surface-variant opacity-70">Product Team v2</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Nav Items generated from JSON -->
+<a class="flex items-center gap-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-3 mx-2 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-3 mx-2 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">science</span>
+<span class="text-label-md font-label-md">Research Hub</span>
+</a>
+<a class="flex items-center gap-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-3 mx-2 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<span class="text-label-md font-label-md">Docs</span>
+</a>
+<a class="flex items-center gap-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-3 mx-2 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+<span class="text-label-md font-label-md">AI Assistant</span>
+</a>
+<a class="flex items-center gap-stack-sm bg-primary-container/10 text-primary border-l-2 border-primary px-4 py-3 mx-2 rounded-r-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">assignment</span>
+<span class="text-label-md font-label-md">Tasks</span>
+</a>
+<a class="flex items-center gap-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-3 mx-2 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+<span class="text-label-md font-label-md">Quality Checks</span>
+</a>
+<a class="flex items-center gap-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-3 mx-2 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">ios_share</span>
+<span class="text-label-md font-label-md">Export</span>
+</a>
+</nav>
+<div class="mt-auto px-2 space-y-1 border-t border-outline-variant pt-4">
+<a class="flex items-center gap-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-3 rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-stack-sm text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-3 rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span class="text-label-md font-label-md">Support</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant flex justify-between items-center px-margin-desktop z-40">
+<div class="flex items-center bg-surface-container-low border border-outline-variant rounded-lg px-3 py-1.5 w-96">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-full p-0 placeholder:text-on-surface-variant/50" placeholder="Search team or projects..." type="text"/>
+<span class="text-mono-sm font-mono-sm text-on-surface-variant/40 px-1.5 py-0.5 border border-outline-variant/30 rounded bg-surface">/</span>
+</div>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 bg-primary-container text-white px-4 py-2 rounded-lg hover:opacity-90 transition-all font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>New Project</span>
+</button>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a software engineer in a modern office setting. The lighting is soft and natural, emphasizing a high-end corporate aesthetic with neutral tones. The individual is wearing a dark grey sweater, looking confident and approachable." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD33-cjh3LzLv-VOC85OngHHZp9h8oRLTAHpMhL_rOA-B_uXTK8lQDWpZGge1TM9C1rltJhD_b3ecGB2bqfASEW_0xRd3eSqwVXkFfbqgSgGCe-ydsA24QAdAXRRTHJuW4NkzggNpoNC6cEytvQ_eTJ_Hwrmpd58115lZEfou7ff2en6447wcu0koH2pmNSxMg4IWR8BCYoSN40nkfA66DfOXz9adyzZJE2Y59Q76qXY9Y5BwMenvD5UvmUfPoY4e8ijCq0Ou9_xua7"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[240px] pt-24 pb-12 px-margin-desktop min-h-screen">
+<div class="max-w-container-max mx-auto">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="text-headline-xl font-headline-xl text-on-surface">Team Management</h2>
+<p class="text-body-lg text-on-surface-variant mt-1">Manage collaborators, permissions, and workspace access.</p>
+</div>
+<button class="flex items-center gap-2 border border-outline-variant bg-white px-5 py-2.5 rounded-lg hover:bg-surface-container-low transition-all font-label-md text-label-md shadow-sm" onclick="openInviteModal()">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+<span>Invite Member</span>
+</button>
+</div>
+<!-- Dashboard Content: Stats & List -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Stat Cards -->
+<div class="col-span-4 bg-white border border-outline-variant p-6 rounded-xl">
+<div class="flex items-center justify-between mb-4">
+<span class="text-label-md font-label-md text-on-surface-variant">Active Members</span>
+<span class="material-symbols-outlined text-primary">groups</span>
+</div>
+<div class="text-headline-lg font-headline-lg">12</div>
+<div class="text-body-sm text-on-tertiary-fixed-variant mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>+2 this month</span>
+</div>
+</div>
+<div class="col-span-4 bg-white border border-outline-variant p-6 rounded-xl">
+<div class="flex items-center justify-between mb-4">
+<span class="text-label-md font-label-md text-on-surface-variant">Pending Invites</span>
+<span class="material-symbols-outlined text-on-surface-variant">mail_outline</span>
+</div>
+<div class="text-headline-lg font-headline-lg">3</div>
+<div class="text-body-sm text-on-surface-variant mt-2">Expiring within 48h</div>
+</div>
+<div class="col-span-4 bg-white border border-outline-variant p-6 rounded-xl ai-border bg-tertiary-container/5">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">auto_awesome</span>
+<span class="text-label-md font-label-md text-secondary">AI Optimization</span>
+</div>
+</div>
+<div class="text-body-md text-on-surface-variant">Team efficiency is up 14%. Recommend adding a 'Senior Reviewer' for Documentation.</div>
+<button class="mt-4 text-secondary font-label-md text-label-md hover:underline">View Insight</button>
+</div>
+<!-- Team Table -->
+<div class="col-span-12 bg-white border border-outline-variant rounded-xl overflow-hidden mt-stack-md">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Member</th>
+<th class="px-6 py-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Role</th>
+<th class="px-6 py-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Activity</th>
+<th class="px-6 py-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">AL</div>
+<div>
+<div class="text-body-md font-medium">Alex Linden</div>
+<div class="text-body-sm text-on-surface-variant">alex.l@engineerhub.ai</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4"><span class="bg-surface-container-high px-2 py-1 rounded text-mono-sm font-mono-sm">Owner</span></td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 text-body-sm text-tertiary">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> Active
+                                    </span>
+</td>
+<td class="px-6 py-4 text-body-sm text-on-surface-variant">2 mins ago</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">more_horiz</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-bold">SM</div>
+<div>
+<div class="text-body-md font-medium">Sarah Miller</div>
+<div class="text-body-sm text-on-surface-variant">s.miller@engineerhub.ai</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4"><span class="bg-surface-container-high px-2 py-1 rounded text-mono-sm font-mono-sm">Lead Engineer</span></td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 text-body-sm text-tertiary">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> Active
+                                    </span>
+</td>
+<td class="px-6 py-4 text-body-sm text-on-surface-variant">1 hour ago</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">more_horiz</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-outline-variant/30 flex items-center justify-center text-on-surface-variant font-bold">JD</div>
+<div>
+<div class="text-body-md font-medium">Jordan Doe</div>
+<div class="text-body-sm text-on-surface-variant">j.doe@engineerhub.ai</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4"><span class="bg-surface-container-high px-2 py-1 rounded text-mono-sm font-mono-sm">Designer</span></td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 text-body-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-outline"></span> Pending
+                                    </span>
+</td>
+<td class="px-6 py-4 text-body-sm text-on-surface-variant">Invited 2 days ago</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">more_horiz</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- Invite Member Modal Overlay -->
+<div class="fixed inset-0 bg-on-background/40 backdrop-blur-sm z-[100] flex items-center justify-center transition-opacity" id="inviteModal">
+<div class="bg-white w-full max-w-[480px] rounded-xl shadow-xl overflow-hidden border border-outline-variant animate-in fade-in zoom-in duration-200">
+<!-- Modal Header -->
+<div class="px-6 py-5 border-b border-outline-variant flex justify-between items-center">
+<h3 class="text-headline-md font-headline-md text-on-surface">Invite to Team</h3>
+<button class="text-on-surface-variant hover:text-error transition-colors" onclick="closeInviteModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Modal Content -->
+<div class="p-6">
+<p class="text-body-md text-on-surface-variant mb-6">Invite a new member to the workspace. They will receive an email invitation to join the team.</p>
+<div class="space-y-4">
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-1.5" for="inviteEmail">Email Address</label>
+<input class="w-full px-4 py-2.5 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-body-md bg-surface-container-lowest" id="inviteEmail" placeholder="example@engineerhub.ai" type="email"/>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-1.5">Role (Optional)</label>
+<select class="w-full px-4 py-2.5 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-body-md bg-surface-container-lowest">
+<option>Engineer</option>
+<option>Researcher</option>
+<option>Product Manager</option>
+<option>Viewer</option>
+</select>
+</div>
+</div>
+<!-- Toast Area -->
+<div class="mt-4 hidden animate-in slide-in-from-top-2 duration-300" id="toastArea">
+<div class="bg-tertiary-container/10 border border-tertiary/20 text-tertiary px-4 py-3 rounded-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="text-body-sm font-medium" id="toastMessage"></span>
+</div>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="px-6 py-4 bg-surface-container-low border-t border-outline-variant flex justify-end gap-3">
+<button class="px-4 py-2 text-label-md font-label-md text-on-surface-variant hover:text-on-surface transition-colors" onclick="closeInviteModal()">Cancel</button>
+<button class="bg-primary-container text-white px-6 py-2 rounded-lg hover:opacity-90 transition-all font-label-md text-label-md flex items-center gap-2" id="sendBtn" onclick="handleInvite()">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Send Invitation</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+        const modal = document.getElementById('inviteModal');
+        const toastArea = document.getElementById('toastArea');
+        const toastMessage = document.getElementById('toastMessage');
+        const emailInput = document.getElementById('inviteEmail');
+        const sendBtn = document.getElementById('sendBtn');
+
+        function openInviteModal() {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            toastArea.classList.add('hidden');
+        }
+
+        function closeInviteModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function handleInvite() {
+            const email = emailInput.value || "example@engineerhub.ai";
+            
+            // Interaction: Button State
+            sendBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span><span>Sending...</span>`;
+            sendBtn.disabled = true;
+
+            setTimeout(() => {
+                // Success State
+                toastMessage.innerText = `Invitation sent successfully to ${email}`;
+                toastArea.classList.remove('hidden');
+                
+                // Reset Button
+                sendBtn.innerHTML = `<span class="material-symbols-outlined text-[18px]">send</span><span>Send Invitation</span>`;
+                sendBtn.disabled = false;
+
+                // Auto Close after 2 seconds
+                setTimeout(() => {
+                    if (!modal.classList.contains('hidden')) {
+                        closeInviteModal();
+                    }
+                }, 2500);
+            }, 1000);
+        }
+
+        // Close on ESC
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeInviteModal();
+        });
+    </script>
+</body></html>
