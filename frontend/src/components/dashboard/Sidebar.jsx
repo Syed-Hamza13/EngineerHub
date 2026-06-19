@@ -11,45 +11,48 @@ import {
   UsersRound,
 } from "lucide-react";
 
+import { Link, useLocation } from "react-router-dom";
+
 function Sidebar() {
+  const location = useLocation();
+
   const menuItems = [
-  {
-    icon: LayoutDashboard,
-    label: "Dashboard",
-    path: "/dashboard",
-  },
-  {
-    icon: FlaskConical,
-    label: "Research Hub",
-    path: "/dashboard/research-hub",
-    active: true,
-  },
-  {
-    icon: UsersRound,
-    label: "Teams",
-    path: "/dashboard/teams",
-  },
-  {
-    icon: FileText,
-    label: "Docs",
-    path: "/dashboard/docs",
-  },
-  {
-    icon: Bot,
-    label: "AI Assistant",
-    path: "/dashboard/ai-assistant",
-  },
-  {
-    icon: ShieldCheck,
-    label: "Quality Checks",
-    path: "/dashboard/quality-checks",
-  },
-  {
-    icon: ListTodo,
-    label: "Tasks",
-    path: "/dashboard/tasks",
-  },
-];
+    {
+      icon: LayoutDashboard,
+      label: "Dashboard",
+      path: "/dashboard",
+    },
+    {
+      icon: FlaskConical,
+      label: "Research Hub",
+      path: "/dashboard/research-hub",
+    },
+    {
+      icon: UsersRound,
+      label: "Teams",
+      path: "/dashboard/teams",
+    },
+    {
+      icon: FileText,
+      label: "Docs",
+      path: "/dashboard/docs",
+    },
+    {
+      icon: Bot,
+      label: "AI Assistant",
+      path: "/dashboard/ai-assistant",
+    },
+    {
+      icon: ShieldCheck,
+      label: "Quality Checks",
+      path: "/dashboard/quality-checks",
+    },
+    {
+      icon: ListTodo,
+      label: "Tasks",
+      path: "/dashboard/tasks",
+    },
+  ];
 
   return (
     <aside className="w-64 h-screen bg-white border-r border-slate-200 flex flex-col">
@@ -68,21 +71,22 @@ function Sidebar() {
           const Icon = item.icon;
 
           return (
-            <button
+            <Link
               key={item.label}
+              to={item.path}
               className={`
-                w-full flex items-center gap-3 px-6 py-3 text-left transition
+    w-full flex items-center gap-3 px-6 py-3 text-left transition
 
-                ${
-                  item.active
-                    ? "bg-blue-50 text-blue-600"
-                    : "hover:bg-slate-50 text-slate-700"
-                }
-              `}
+    ${
+      location.pathname === item.path
+        ? "bg-blue-50 text-blue-600"
+        : "hover:bg-slate-50 text-slate-700"
+    }
+  `}
             >
               <Icon size={18} />
               {item.label}
-            </button>
+            </Link>
           );
         })}
       </nav>
