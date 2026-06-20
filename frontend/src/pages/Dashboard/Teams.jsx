@@ -4,6 +4,8 @@ import TeamStats from "../../components/team/TeamStats";
 import TeamsGrid from "../../components/team/TeamsGrid";
 import PendingInvites from "../../components/team/PendingInvites";
 
+import IncomingInvites from "../../components/team/IncomingInvites";
+
 import CreateTeamModal from "../../components/team/CreateTeamModal";
 import InviteMemberModal from "../../components/team/InviteMemberModal";
 
@@ -27,6 +29,28 @@ function Teams() {
       projects: 2,
     },
   ]);
+
+  const [incomingInvites, setIncomingInvites] =
+    useState([
+      {
+        id: 1,
+        teamName: "AI Research Team",
+        invitedBy: "Rahul Sharma",
+        description:
+          "Join our LLM Benchmark Project",
+        sentDate: "20 Jun 2026",
+        status: "Pending",
+      },
+      {
+        id: 2,
+        teamName: "Cyber Security",
+        invitedBy: "Ahmed Khan",
+        description:
+          "Security Audit Team",
+        sentDate: "19 Jun 2026",
+        status: "Pending",
+      },
+    ]);
 
   const [pendingInvites, setPendingInvites] =
     useState([]);
@@ -53,43 +77,76 @@ function Teams() {
   };
 
   const handleInvite = (inviteData) => {
-  const newInvite = {
-    id: Date.now(),
-    email: inviteData.email,
-    role: inviteData.role,
-    teamName: inviteData.teamName,
-    sentDate: new Date().toLocaleDateString(),
-    status: "Pending",
+    const newInvite = {
+      id: Date.now(),
+      email: inviteData.email,
+      role: inviteData.role,
+      teamName: inviteData.teamName,
+      sentDate: new Date().toLocaleDateString(),
+      status: "Pending",
+    };
+
+    setPendingInvites((prev) => [
+      ...prev,
+      newInvite,
+    ]);
   };
 
-  setPendingInvites((prev) => [
-    ...prev,
-    newInvite,
-  ]);
-};
+  const handleDeleteInvite = (id) => {
+    setPendingInvites((prev) =>
+      prev.filter((invite) => invite.id !== id)
+    );
+  };
 
-const handleDeleteInvite = (id) => {
-  setPendingInvites((prev) =>
-    prev.filter((invite) => invite.id !== id)
-  );
-};
-
-const handleResendInvite = (id) => {
-  setPendingInvites((prev) =>
-    prev.map((invite) =>
-      invite.id === id
-        ? {
+  const handleResendInvite = (id) => {
+    setPendingInvites((prev) =>
+      prev.map((invite) =>
+        invite.id === id
+          ? {
             ...invite,
             sentDate:
               new Date().toLocaleDateString(),
             status: "Pending",
           }
-        : invite
-    )
-  );
+          : invite
+      )
+    );
 
-  alert("Invitation resent successfully");
-};
+    alert("Invitation resent successfully");
+  };
+
+  const handleAcceptInvite = (id) => {
+
+    const invite = incomingInvites.find(
+      (i) => i.id === id
+    );
+
+    if (!invite) return;
+
+    const newTeam = {
+      id: Date.now(),
+      name: invite.teamName,
+      description: invite.description,
+      role: "Collaborator",
+      members: 5,
+      projects: 2,
+    };
+
+    setTeams((prev) => [
+      ...prev,
+      newTeam,
+    ]);
+
+    setIncomingInvites((prev) =>
+      prev.filter((i) => i.id !== id)
+    );
+  };
+
+  const handleRejectInvite = (id) => {
+    setIncomingInvites((prev) =>
+      prev.filter((i) => i.id !== id)
+    );
+  };
 
   const openInviteModal = (team) => {
     setSelectedTeam(team);
@@ -97,7 +154,7 @@ const handleResendInvite = (id) => {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="px-8 py-8 space-y-8 max-w-7xl">
 
       <div className="flex justify-between items-center">
 
@@ -131,12 +188,17 @@ const handleResendInvite = (id) => {
         teams={teams}
         onInvite={openInviteModal}
       />
+      <IncomingInvites
+        invites={incomingInvites}
+        onAccept={handleAcceptInvite}
+        onReject={handleRejectInvite}
+      />
 
       <PendingInvites
-  invites={pendingInvites}
-  onDelete={handleDeleteInvite}
-  onResend={handleResendInvite}
-/>
+        invites={pendingInvites}
+        onDelete={handleDeleteInvite}
+        onResend={handleResendInvite}
+      />
 
       <CreateTeamModal
         isOpen={createModalOpen}
