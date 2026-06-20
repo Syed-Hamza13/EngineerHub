@@ -26,16 +26,21 @@ const createProject = async (projectData) => {
 
     // Add Owner as Member
     await ProjectMember.create({
-        projectId: project._id,
-        userId: ownerId,
-        role: "Owner",
-        permissions:[
-            "CREATE_PROJECT",
-            "DELETE_PROJECT",
-            "MANAGE_MEMBER"
-        ]
-    });
 
+    projectId:project._id,
+
+    userId:ownerId,
+
+    role:"Leader",
+
+    permissions:[
+        "CREATE_PROJECT",
+        "DELETE_PROJECT",
+        "MANAGE_MEMBER",
+        "EDIT_PROJECT"
+    ]
+
+});
 
     return project;
 };
@@ -52,12 +57,15 @@ const getProjects = async () => {
 
 
 // Get Single Project
-const getProjectById = async (projectId)=>{
+const getProjectById = async(projectId)=>{
 
-    return await Project.findById(projectId);
+    return await Project.findById(projectId)
+    .populate(
+        "ownerId",
+        "skills technologies interests"
+    );
 
 };
-
 
 
 // Update Project

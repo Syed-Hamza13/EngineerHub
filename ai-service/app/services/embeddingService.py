@@ -1,10 +1,11 @@
-from app.models.embeddingModel import get_model
+from app.models.embeddingModel import model
 
 
-def generate_embedding(text):
-
-    model = get_model()
+def create_research_embedding(text):
 
     vector = model.encode(text)
 
-    return vector.tolist()
+    return {
+        "vector": vector.tolist(),
+        "model": "sentence-transformers/all-MiniLM-L6-v2"
+    }

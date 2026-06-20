@@ -4,11 +4,11 @@ const mongoose = require("mongoose");
 const projectSchema = new mongoose.Schema(
 {
     ownerId:
-    {
-        type: mongoose.Schema.Types.ObjectId,
-        required:true
-    },
-
+{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"Profile",
+    required:true
+},
 
     name:
     {

@@ -1,19 +1,12 @@
 from fastapi import APIRouter
-
-from app.services.embeddingService import generate_embedding
-
+from app.services.embeddingService import create_research_embedding
 
 router = APIRouter()
 
 
-@router.post("/generate-profile-embedding")
-def create_embedding(data:dict):
+@router.post("/generate-research-embedding")
+def generate_embedding(data: dict):
 
     text = data["text"]
 
-    vector = generate_embedding(text)
-
-    return {
-        "success":True,
-        "embedding":vector
-    }
+    return create_research_embedding(text)

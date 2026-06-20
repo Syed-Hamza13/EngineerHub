@@ -3,46 +3,46 @@ const mongoose = require("mongoose");
 
 const projectMemberSchema = new mongoose.Schema(
 {
-
     projectId:
     {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Project",
-        required:true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Project",
+        required: true
     },
 
 
+    // Module 1 Profile connection
     userId:
     {
-        type:mongoose.Schema.Types.ObjectId,
-        required:true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Profile",
+        required: true
     },
 
 
     role:
     {
-        type:String,
-        enum:[
-            "Owner",
-            "Research Lead",
-            "Researcher",
-            "Developer",
-            "Designer",
-            "Viewer"
+        type: String,
+
+        enum:
+        [
+            "Leader",
+            "Member"
         ],
-        default:"Viewer"
+
+        default: "Member"
     },
 
 
     permissions:
     {
-        type:[String],
-        default:[]
+        type: [String],
+        default: []
     }
 
 },
 {
-    timestamps:true
+    timestamps: true
 });
 
 
