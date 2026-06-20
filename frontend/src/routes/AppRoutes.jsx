@@ -8,6 +8,7 @@ import Onboarding from "../pages/Onboarding/Onboarding";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import ResearchHub from "../pages/Dashboard/ResearchHub";
 import Teams from "../pages/Dashboard/Teams";
+import ProjectWorkspace from "../pages/Dashboard/ProjectWorkspace";
 
 import TeamDetails from "../pages/Dashboard/TeamDetails";
 
@@ -29,6 +30,8 @@ function AppRoutes() {
         <Route path="teams" element={<Teams />} />
 
         <Route path="teams/:id" element={<TeamDetails />} />
+
+        <Route path="project/:projectId" element={<ProjectWorkspace />} />
       </Route>
     </Routes>
   );

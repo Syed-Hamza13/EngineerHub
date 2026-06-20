@@ -1,8 +1,19 @@
+import { useNavigate } from "react-router-dom";
+
 function ProjectCard({
   project,
 }) {
+  const navigate = useNavigate();
+
+  const handleOpenProject = () => {
+    navigate(`/dashboard/project/${project.id}`);
+  };
+
   return (
-    <div className="border border-slate-200 rounded-xl p-5">
+    <div
+      onClick={handleOpenProject}
+      className="border border-slate-200 rounded-xl p-5 cursor-pointer hover:border-blue-300 hover:shadow-md transition-all"
+    >
 
       <div className="flex justify-between mb-3">
 

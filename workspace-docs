@@ -1,0 +1,491 @@
+Bhai maine tumhari requirement aur Stitch ke design dono compare kar liye. Abhi jo Stitch ne banaya hai usme bahut saari cheezein hain jo apne use hi nahi karenge.
+
+### Kya rakhenge
+
+#### Header
+
+Ye section rakhenge:
+
+```text
+Project Name
+Project Description
+Domain Badge
+Progress %
+Team Members Count
+```
+
+Example:
+
+```text
+AI Research Agent Platform
+
+Building AI-powered research workflows
+
+AI / ML
+68% Progress
+8 Members
+```
+
+---
+
+### Header Collapse / Slide Up
+
+Ye tumhara sabse important requirement hai.
+
+Default:
+
+```text
+-----------------------------------
+Project Name
+Description
+Progress
+Members
+-----------------------------------
+```
+
+Jab user scroll kare ya tab switch kare:
+
+```text
+-----------------------------------
+AI Research Agent Platform
+68%
+8 Members
+-----------------------------------
+```
+
+Description hide.
+
+Height reduce.
+
+Sticky top header ban jayega.
+
+Bilkul Linear / Notion style.
+
+---
+
+# Tabs Final
+
+Stitch wale:
+
+```text
+Overview
+Documents
+Datasets
+Experiments
+Timeline
+Settings
+```
+
+POORE HATAO.
+
+Final tabs:
+
+```text
+Chat
+Documents
+Tasks
+Meetings
+Overview
+```
+
+Order:
+
+```text
+Chat        ← Default Open
+Documents
+Tasks
+Meetings
+Overview
+```
+
+---
+
+# Workspace Structure
+
+```text
+ProjectWorkspace
+
+├── Header
+│
+├── Tabs
+│
+└── Active Content
+```
+
+---
+
+# Default Screen
+
+User project open kare.
+
+Direct yeh dikhe:
+
+```text
+-------------------------------------
+Project Header
+-------------------------------------
+
+[Chat]
+[Documents]
+[Tasks]
+[Meetings]
+[Overview]
+
+-------------------------------------
+Chat Area
+-------------------------------------
+```
+
+Overview nahi.
+
+Chat open hoga.
+
+---
+
+# Chat Tab
+
+Ye Workspace ka main screen hoga.
+
+### Layout
+
+```text
+------------------------------------------------
+
+Conversation Area
+
+------------------------------------------------
+
+You:
+Hello
+
+AI:
+Response
+
+------------------------------------------------
+
+Input Box
+
+------------------------------------------------
+```
+
+---
+
+### Right Side Quick Actions
+
+```text
+Analyze Documents
+
+Generate Research Summary
+
+Find Research Gaps
+
+Generate PPT Content
+
+Generate Literature Review
+
+Generate Final Report
+```
+
+---
+
+### Team Mention
+
+```text
+@Rahul
+@Ahmed
+@Hamza
+```
+
+Support.
+
+---
+
+### Meeting Start
+
+Chat ke andar:
+
+```text
+🎥 Start Meeting
+```
+
+button.
+
+---
+
+# Documents Tab
+
+Stitch ka Overview poora hata.
+
+Documents tab me:
+
+```text
+Upload File
+Search
+Filter
+```
+
+---
+
+Document card:
+
+```text
+paper.pdf
+
+Uploaded By:
+Rahul
+
+Size:
+12MB
+
+Uploaded:
+2h ago
+
+[Preview]
+[Download]
+[Delete]
+```
+
+---
+
+AI actions:
+
+```text
+Summarize
+
+Generate Notes
+
+Extract Insights
+
+Ask Questions
+```
+
+---
+
+# Tasks Tab
+
+Kanban board.
+
+Columns:
+
+```text
+Todo
+
+In Progress
+
+Review
+
+Completed
+```
+
+Card:
+
+```text
+Train LLM
+
+Ahmed Khan
+
+High Priority
+
+Due:
+20 Jun
+```
+
+---
+
+Actions:
+
+```text
+Assign
+Move
+Delete
+```
+
+---
+
+# Meetings Tab
+
+Meeting cards.
+
+```text
+Weekly Research Sync
+
+Today 6 PM
+
+Participants: 6
+
+[Join]
+
+[Schedule]
+```
+
+---
+
+Meeting schedule modal:
+
+```text
+Title
+Date
+Time
+Description
+Participants
+```
+
+---
+
+# Overview Tab
+
+Ab yeh dashboard banega.
+
+Stitch ke cards yahan shift honge.
+
+### Yahan rakhenge
+
+```text
+Progress
+
+Documents
+
+Tasks
+
+Meetings
+
+Team Members
+```
+
+---
+
+### Research Timeline
+
+```text
+Research Started
+
+Data Collection
+
+Analysis
+
+Report
+
+Completed
+```
+
+---
+
+### Recent Activity
+
+```text
+Rahul uploaded PDF
+
+Ahmed completed task
+
+Hamza generated summary
+```
+
+---
+
+# Jo Stitch se poora hata dena hai
+
+Ye sab:
+
+```text
+AI Insight Card
+Upcoming Deadlines
+Network Traffic
+Datasets Tab
+Experiments Tab
+Timeline Tab
+Settings Tab
+Stats Grid
+```
+
+Sab remove.
+
+Unki jagah:
+
+```text
+Chat Workspace
+```
+
+aayega.
+
+---
+
+# Final Folder Structure
+
+```text
+pages/
+└── Dashboard/
+    ├── ResearchHub.jsx
+    └── ProjectWorkspace.jsx
+
+components/workspace/
+
+├── WorkspaceHeader.jsx
+├── WorkspaceTabs.jsx
+
+├── chat/
+│   ├── ChatTab.jsx
+│   ├── ChatMessage.jsx
+│   └── ChatInput.jsx
+
+├── documents/
+│   ├── DocumentsTab.jsx
+│   ├── DocumentCard.jsx
+│   └── UploadDocumentModal.jsx
+
+├── tasks/
+│   ├── TasksTab.jsx
+│   ├── KanbanBoard.jsx
+│   └── CreateTaskModal.jsx
+
+├── meetings/
+│   ├── MeetingsTab.jsx
+│   └── ScheduleMeetingModal.jsx
+
+├── overview/
+│   ├── OverviewTab.jsx
+│   ├── StatsCards.jsx
+│   └── ActivityTimeline.jsx
+```
+
+### Build Order
+
+Phase 1:
+
+```text
+✅ Project card click
+✅ Route setup
+✅ ProjectWorkspace page
+✅ WorkspaceHeader
+✅ WorkspaceTabs
+```
+
+Phase 2:
+
+```text
+✅ Chat Tab (Default Screen)
+```
+
+Phase 3:
+
+```text
+✅ Documents
+```
+
+Phase 4:
+
+```text
+✅ Tasks
+```
+
+Phase 5:
+
+```text
+✅ Meetings
+```
+
+Phase 6:
+
+```text
+✅ Overview
+```
+

@@ -1,5 +1,5 @@
 import Sidebar from "../../components/dashboard/Sidebar";
-import Topbar from "../../components/dashboard/Topbar";
+// import Topbar from "../../components/dashboard/Topbar";
 // import ResearchHub from "./ResearchHub";
 import { Outlet } from "react-router-dom";
 
@@ -9,7 +9,7 @@ function Dashboard() {
       <Sidebar />
 
       <div className="flex-1 flex flex-col">
-        <Topbar />
+        {/* <Topbar /> */}
 
         <main className="flex-1 overflow-auto">
           <Outlet />
