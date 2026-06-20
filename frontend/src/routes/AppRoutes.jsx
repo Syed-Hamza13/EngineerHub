@@ -9,10 +9,11 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import ResearchHub from "../pages/Dashboard/ResearchHub";
 import Teams from "../pages/Dashboard/Teams";
 
+import TeamDetails from "../pages/Dashboard/TeamDetails";
+
 function AppRoutes() {
   return (
     <Routes>
-
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
@@ -20,25 +21,15 @@ function AppRoutes() {
 
       {/* Dashboard Layout */}
       <Route path="/dashboard" element={<Dashboard />}>
-
         {/* Default Page */}
-        <Route
-          index
-          element={<Navigate to="research-hub" replace />}
-        />
+        <Route index element={<Navigate to="research-hub" replace />} />
 
-        <Route
-          path="research-hub"
-          element={<ResearchHub />}
-        />
+        <Route path="research-hub" element={<ResearchHub />} />
 
-        <Route
-          path="teams"
-          element={<Teams />}
-        />
+        <Route path="teams" element={<Teams />} />
 
+        <Route path="teams/:id" element={<TeamDetails />} />
       </Route>
-
     </Routes>
   );
 }

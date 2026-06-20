@@ -1,5 +1,4 @@
 import {
-  Mail,
   RotateCcw,
   Trash2,
 } from "lucide-react";
