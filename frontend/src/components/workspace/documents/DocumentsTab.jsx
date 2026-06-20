@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import {
   Upload,
@@ -7,11 +7,12 @@ import {
 } from "lucide-react";
 
 import DocumentCard from "./DocumentCard";
-import UploadDocumentModal from "./UploadDocumentModal";
+// import UploadDocumentModal from "./UploadDocumentModal";
 
 function DocumentsTab() {
-  const [showUploadModal, setShowUploadModal] =
-    useState(false);
+  
+
+    
 
   const [documents, setDocuments] =
     useState([
@@ -60,6 +61,20 @@ function DocumentsTab() {
           "Anomalous spikes detected during testing.",
       },
     ]);
+
+    const fileInputRef = useRef(null);
+
+const handleUploadClick = () => {
+  fileInputRef.current?.click();
+};
+
+const handleFilesSelected = (e) => {
+  const files = Array.from(e.target.files);
+
+  console.log(files);
+
+  // Future API Upload
+};
 
   const handleDelete = (id) => {
     setDocuments((prev) =>
@@ -110,9 +125,7 @@ function DocumentsTab() {
               hover:bg-blue-50/40
               transition
             "
-            onClick={() =>
-              setShowUploadModal(true)
-            }
+           onClick={handleUploadClick}
           >
             <Upload
               className="
@@ -143,6 +156,22 @@ function DocumentsTab() {
               or Images
             </p>
           </div>
+          <input
+  ref={fileInputRef}
+  type="file"
+  multiple
+  accept="
+    .pdf,
+    .doc,
+    .docx,
+    .ppt,
+    .pptx,
+    .txt,
+    image/*
+  "
+  className="hidden"
+  onChange={handleFilesSelected}
+/>
 
           {/* Stats */}
           <div
@@ -294,12 +323,7 @@ function DocumentsTab() {
         </div>
       </div>
 
-      <UploadDocumentModal
-        isOpen={showUploadModal}
-        onClose={() =>
-          setShowUploadModal(false)
-        }
-      />
+      
     </>
   );
 }
