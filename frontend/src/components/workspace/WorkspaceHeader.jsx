@@ -19,8 +19,9 @@ function WorkspaceHeader({ project }) {
     sticky top-0 z-30
     bg-white/95 backdrop-blur-md
     border border-slate-200
-    rounded-2xl
-    mb-6
+    rounded-t-2xl
+    rounded-b-none
+    mb-0
     transition-all duration-500
     ${collapsed ? "py-3 px-5 shadow-lg" : "p-6"}
   `}

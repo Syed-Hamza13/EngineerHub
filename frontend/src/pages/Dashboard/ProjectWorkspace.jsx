@@ -28,7 +28,7 @@ function ProjectWorkspace() {
 
       <WorkspaceTabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      <div className="mt-6">
+      <div className="mt-4">
         {activeTab === "chat" && <ChatTab />}
 
         {activeTab === "documents" && <DocumentsTab />}

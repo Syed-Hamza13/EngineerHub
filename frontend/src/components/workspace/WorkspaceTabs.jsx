@@ -2,7 +2,18 @@ function WorkspaceTabs({ activeTab, setActiveTab }) {
   const tabs = ["chat", "documents", "tasks", "meetings", "overview"];
 
   return (
-    <div className="border-b border-slate-200 bg-white rounded-t-2xl px-6 py-4">
+    <div
+      className="
+        bg-white
+        border-x
+        border-b
+        border-t-0
+        border-slate-200
+        rounded-b-2xl
+        px-6
+        py-3
+      "
+    >
       <div className="flex gap-8">
         {tabs.map((tab) => (
           <button

@@ -30,41 +30,21 @@ function ChatTab() {
 
   return (
     <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
-      <div className="grid grid-cols-12 gap-6 p-6 min-h-[600px]">
+      <div className="p-6 min-h-[700px]">
         {/* Chat Area */}
-        <div className="col-span-8 flex flex-col">
+        <div className="h-full flex flex-col">
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto space-y-4 mb-6 pr-4">
-            {messages.map((message, index) => (
-              <ChatMessage key={index} message={message} />
-            ))}
+          <div className="flex-1 overflow-y-auto mb-6">
+            <div className="max-w-4xl mx-auto space-y-8">
+              {messages.map((message, index) => (
+                <ChatMessage key={index} message={message} />
+              ))}
+            </div>
           </div>
 
           {/* Input */}
-          <ChatInput onSendMessage={handleSendMessage} />
-        </div>
-
-        {/* Quick Actions */}
-        <div className="col-span-4">
-          <h3 className="text-sm font-semibold text-slate-900 mb-4">
-            Quick Actions
-          </h3>
-          <div className="space-y-2">
-            {[
-              "Analyze Documents",
-              "Generate Summary",
-              "Find Research Gaps",
-              "Generate PPT",
-              "Literature Review",
-              "Generate Report",
-            ].map((action, index) => (
-              <button
-                key={index}
-                className="w-full text-left px-3 py-2 text-sm font-medium text-slate-700 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all border border-slate-200 hover:border-blue-200"
-              >
-                {action}
-              </button>
-            ))}
+          <div className="max-w-4xl mx-auto w-full">
+            <ChatInput onSendMessage={handleSendMessage} />
           </div>
         </div>
       </div>
