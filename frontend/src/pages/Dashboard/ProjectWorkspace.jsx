@@ -23,12 +23,12 @@ function ProjectWorkspace() {
   };
 
   return (
-    <div className="p-8 bg-slate-50 min-h-screen">
+    <div className="p-2 bg-slate-50 h-full flex flex-col">
       <WorkspaceHeader project={project} />
 
       <WorkspaceTabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      <div className="mt-4">
+      <div className="mt-4 flex-1 min-h-0">
         {activeTab === "chat" && <ChatTab />}
 
         {activeTab === "documents" && <DocumentsTab />}

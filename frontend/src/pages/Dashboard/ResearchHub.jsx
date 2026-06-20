@@ -49,7 +49,7 @@ function ResearchHub() {
   };
 
   return (
-    <div className="p-8 space-y-6">
+    <div className="p-2 space-y-3">
 
       <CreateProjectBanner
         onCreateProject={() => setIsModalOpen(true)}

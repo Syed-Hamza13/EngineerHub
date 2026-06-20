@@ -50,7 +50,7 @@ function ChatInput({
   };
 
   return (
-    <div className="pt-4">
+    <div>
 
       <div
         className="
