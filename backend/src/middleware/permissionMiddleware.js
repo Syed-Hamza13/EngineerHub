@@ -3,7 +3,7 @@ require("../services/permissionService");
 
 
 
-const checkPermission =
+const checkPermission = 
 (requiredPermission)=>{ 
 
 

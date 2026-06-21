@@ -154,8 +154,8 @@ function TechStackStep({ onNext }) {
 
         </div>
 
-        {/* Mobile Next */}
-        <div className="mt-8 flex justify-end md:hidden">
+        {/* Next Button */}
+        <div className="mt-8 flex justify-end">
 
           <button
             onClick={handleNext}

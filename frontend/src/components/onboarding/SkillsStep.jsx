@@ -121,8 +121,8 @@ function SkillsStep({ onNext }) {
 
         </div>
 
-        {/* Mobile Next Button */}
-        <div className="mt-8 flex justify-end md:hidden">
+        {/* Next Button */}
+        <div className="mt-8 flex justify-end">
           <button
             onClick={handleNext}
             className="px-8 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-sm"

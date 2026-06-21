@@ -196,8 +196,8 @@ function AlgorithmsStep({ onNext }) {
 
         </div>
 
-        {/* Mobile Next Button */}
-        <div className="mt-8 flex justify-end md:hidden">
+        {/* Next Button */}
+        <div className="mt-8 flex justify-end">
 
           <button
             onClick={handleNext}

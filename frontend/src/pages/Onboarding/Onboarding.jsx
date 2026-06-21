@@ -85,9 +85,28 @@ async () => {
  
   try {
 
+    console.log(
+      "ONBOARDING DATA =>",
+      onboardingData
+    );
+
     const user =
     JSON.parse(
       localStorage.getItem("user")
+    );
+
+    console.log(
+      "CREATING PROFILE WITH =>",
+      {
+        userId: user._id,
+        role: "",
+        experienceLevel: "",
+        bio: "",
+        skills: onboardingData.skills,
+        algorithms: onboardingData.algorithms,
+        technologies: onboardingData.techStack,
+        interests: onboardingData.interests,
+      }
     );
 
     await createProfile({
@@ -190,16 +209,12 @@ async () => {
         {renderStep()}
       </div>
 
-      {/* Footer only for steps 1-4 */}
-      {currentStep !== 5 && (
+      {/* Footer only for step 5 */}
+      {currentStep === 5 && (
         <OnboardingFooter
           onPrevious={previousStep}
-          onNext={nextStep}
-          nextText={
-            currentStep === 4
-              ? "Finish Setup"
-              : "Next Step"
-          }
+          onNext={handleFooterNext}
+          nextText="Finish Setup"
         />
       )}
 

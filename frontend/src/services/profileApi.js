@@ -19,7 +19,7 @@ export const createProfile = async (
 
 export const getProfile = async (
   userId
-) => {
+) => { 
 
   const response =
   await axios.get(
