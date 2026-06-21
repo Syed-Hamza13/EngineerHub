@@ -30,6 +30,7 @@ function ResearchHub() {
       updated: "3d ago",
       status: "active",
     },
+
   ]);
 
   const handleCreateProject = (projectData) => {

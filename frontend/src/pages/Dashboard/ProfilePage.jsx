@@ -1,9 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  getProfile,
-  updateProfile
-}
-from "../../services/profileApi";
+import { getProfile, updateProfile } from "../../services/profileApi";
 
 import ProfileTab from "../../components/setting/ProfileTab";
 import SkillsSection from "../../components/setting/SkillsSection";
@@ -14,112 +10,66 @@ import InterestSection from "../../components/setting/InterestSection";
 function ProfilePage() {
   const [editMode, setEditMode] = useState(false);
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const savedProfile = JSON.parse(localStorage.getItem("profile"));
+
   const [profile, setProfile] = useState({
-    name: "Syed Hamza",
-    email: "hamza@example.com",
-    role: "Full Stack Developer",
+    name: user?.fullName || "",
 
-    skills: ["AI/ML", "Backend", "Frontend"],
+    email: user?.email || "",
 
-    technicalAreas: ["Machine Learning", "Deep Learning", "NLP"],
+    role: savedProfile?.role || "Researcher",
 
-    techStack: ["React", "Node.js", "MongoDB", "Docker"],
+    skills: savedProfile?.skills || [],
 
-    interests: ["AI", "Research Papers", "Open Source"],
+    technicalAreas: savedProfile?.algorithms || [],
+
+    techStack: savedProfile?.technologies || [],
+
+    interests: savedProfile?.interests || [],
   });
 
   useEffect(() => {
-
-  const fetchProfile =
-    async () => {
-
+    const fetchProfile = async () => {
       try {
+        const user = JSON.parse(localStorage.getItem("user"));
 
-        const user =
-        JSON.parse(
-          localStorage.getItem(
-            "user"
-          )
-        );
+        const response = await getProfile(user._id);
 
-        const response =
-        await getProfile(
-          user._id
-        );
-
-        const profileData =
-        response.data;
+        const profileData = response.data;
 
         setProfile({
-          name:
-          user.fullName,
-          email:
-          user.email,
-          role:
-          profileData.role,
-          skills:
-          profileData.skills,
-          technicalAreas:
-          profileData.algorithms,
-          techStack:
-          profileData.technologies,
-          interests:
-          profileData.interests,
+          name: user.fullName,
+          email: user.email,
+          role: profileData.role,
+          skills: profileData.skills,
+          technicalAreas: profileData.algorithms,
+          techStack: profileData.technologies,
+          interests: profileData.interests,
         });
-
       } catch (error) {
-
-        console.error(
-          error
-        );
-
+        console.error(error);
       }
-
     };
 
-  fetchProfile();
+    fetchProfile();
+  }, []);
 
-}, []);
+  const handleSave = () => {
+    localStorage.setItem(
+      "profile",
+      JSON.stringify({
+        role: profile.role,
+        skills: profile.skills,
+        algorithms: profile.technicalAreas,
+        technologies: profile.techStack,
+        interests: profile.interests,
+      }),
+    );
 
-  const handleSave =
-  async () => {
-
-    try {
-
-      const user =
-      JSON.parse(
-        localStorage.getItem(
-          "user"
-        )
-      );
-
-      await updateProfile(
-        user._id,
-        {
-          role:
-          profile.role,
-          skills:
-          profile.skills,
-          algorithms:
-          profile.technicalAreas,
-          technologies:
-          profile.techStack,
-          interests:
-          profile.interests,
-        }
-      );
-
-      setEditMode(false);
-
-    } catch (error) {
-
-      console.error(
-        error
-      );
-
-    }
-
-};
+    setEditMode(false);
+  };
 
   return (
     <div className="p-6 space-y-6">

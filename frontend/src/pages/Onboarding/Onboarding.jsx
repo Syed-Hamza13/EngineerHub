@@ -80,25 +80,20 @@ function Onboarding() {
     nextStep();
   };
 
-  const handleOnboardingComplete =
-async () => {
- 
+  const handleOnboardingComplete = async () => {
+
   try {
 
+    // Future Backend Integration
     console.log(
       "ONBOARDING DATA =>",
       onboardingData
     );
 
-    const user =
-    JSON.parse(
-      localStorage.getItem("user")
-    );
-
-    console.log(
-      "CREATING PROFILE WITH =>",
-      {
-        userId: user._id,
+    // Temporary Local Storage Save
+    localStorage.setItem(
+      "profile",
+      JSON.stringify({
         role: "",
         experienceLevel: "",
         bio: "",
@@ -106,48 +101,16 @@ async () => {
         algorithms: onboardingData.algorithms,
         technologies: onboardingData.techStack,
         interests: onboardingData.interests,
-      }
+      })
     );
 
-    await createProfile({
+    navigate("/dashboard");
 
-      userId: user._id,
+  } catch (error) {
 
-      role: "",
+    console.log(error);
 
-      experienceLevel: "",
-
-      bio: "",
-
-      skills:
-      onboardingData.skills,
-
-      algorithms:
-      onboardingData.algorithms,
-
-      technologies:
-      onboardingData.techStack,
-
-      interests:
-      onboardingData.interests,
-
-    });
-
-    navigate(
-      "/dashboard"
-    );
-
-  } catch(error) {
-
-    console.log(
-      "PROFILE ERROR =>",
-      error.response?.data
-    );
-
-    console.log(
-      "FULL ERROR =>",
-      error
-    );
+    navigate("/dashboard");
 
   }
 
@@ -213,7 +176,7 @@ async () => {
       {currentStep === 5 && (
         <OnboardingFooter
           onPrevious={previousStep}
-          onNext={handleFooterNext}
+          onNext={nextStep}
           nextText="Finish Setup"
         />
       )}
