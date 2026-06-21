@@ -22,7 +22,47 @@ const app = express();
 
 app.use(cors());
 
-app.use(express.json());
+// Request logging middleware - FIRST
+app.use((req, res, next) => {
+    if (req.method === 'POST' || req.method === 'PUT') {
+        console.log(`\n📥 ${req.method} ${req.path}`);
+        console.log('  Content-Type:', req.headers['content-type']);
+        console.log('  Content-Length:', req.headers['content-length']);
+    }
+    next();
+});
+
+// JSON Parser with strict error handling
+app.use(express.json({ 
+    limit: '50mb',
+    strict: true,
+    verify: (req, res, buf, encoding) => {
+        try {
+            JSON.parse(buf);
+        } catch (e) {
+            console.error('❌ JSON Parse Error:', e.message);
+            throw new Error('Invalid JSON format');
+        }
+    }
+}));
+
+app.use(express.urlencoded({ 
+    extended: true,
+    limit: '50mb'
+}));
+
+// JSON Parse Error Handler - IMMEDIATELY after middleware
+app.use((err, req, res, next) => {
+    if (err instanceof SyntaxError) {
+        console.error('❌ SyntaxError:', err.message);
+        return res.status(400).json({
+            success: false,
+            message: "Invalid JSON in request body - check your JSON syntax",
+            details: process.env.NODE_ENV === 'development' ? err.message : undefined
+        });
+    }
+    next(err);
+});
 
 
 // Routes
@@ -86,7 +126,23 @@ app.get("/",(req,res)=>{
 
 });
 
-
-
+// Global Error Handler (must be last middleware)
+app.use((err, req, res, next) => {
+    console.error('❌ Server Error:', err.message);
+    
+    if (err instanceof SyntaxError) {
+        return res.status(400).json({
+            success: false,
+            message: "Invalid JSON in request body - check your JSON syntax",
+            details: process.env.NODE_ENV === 'development' ? err.message : undefined
+        });
+    }
+    
+    res.status(err.status || 500).json({
+        success: false,
+        message: err.message || "Server Error",
+        ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+    });
+});
 
 module.exports = app;

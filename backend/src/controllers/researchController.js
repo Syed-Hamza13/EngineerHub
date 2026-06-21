@@ -6,6 +6,26 @@ const validateResearch =
 require("../validators/researchValidator");
 
 
+const {
+    generateResearch
+} = require("../services/nexchatAIService");
+
+
+const {
+    buildResearchContext
+} = require("../services/contextBuilderService");
+
+const {
+    formatResearch
+}
+=
+require("../services/researchFormatterService");
+
+const {
+    generateEmbedding
+}
+=
+require("../services/embeddingService");
 
 // Create Research
 
@@ -67,6 +87,136 @@ exports.createResearch = async(req,res)=>{
 
 
 
+
+// Generate Research using AI
+
+exports.generateResearchAI =
+async(req,res)=>{
+
+    try{
+        // Validate request body exists
+        if (!req.body) {
+            return res.status(400).json({
+                success: false,
+                message: "Request body is required"
+            });
+        }
+
+        const {
+            query,
+            userId,
+            projectId
+        } = req.body;
+
+        // Validate required fields
+        if(!query || typeof query !== 'string' || query.trim() === ''){
+            return res.status(400).json({
+                success:false,
+                message:"Query is required and must be a non-empty string"
+            });
+        }
+
+        if(!userId){
+            return res.status(400).json({
+                success:false,
+                message:"userId is required"
+            });
+        }
+
+        if(!projectId){
+            return res.status(400).json({
+                success:false,
+                message:"projectId is required"
+            });
+        }
+
+        // Build Context from Modules
+
+        const context =
+        await buildResearchContext(
+            userId,
+            projectId
+        );
+
+        // Send Query + Context to AI
+
+        const result =
+        await generateResearch(
+            query,
+            context
+        );
+
+        const formattedResult =
+formatResearch(result);
+
+const embeddingText =
+JSON.stringify(formattedResult);
+
+
+const vector =
+await generateEmbedding(
+    embeddingText
+);
+
+
+        // Save AI Generated Research
+
+       const savedResearch =
+await researchService.createResearch({
+
+    projectId,
+
+    query,
+
+    generatedContent:formattedResult,
+
+    embedding:vector,
+
+    aiGenerated:true
+
+});
+
+
+
+        return res.status(200).json({
+
+            success:true,
+
+            message:
+            "AI Research generated successfully",
+
+            data:savedResearch
+
+        });
+
+
+
+    }
+    catch(error){
+
+        console.error(
+            "AI Research Error:",
+            error.message,
+            error.stack
+        );
+
+        res.status(error.status || 500).json({
+
+            success:false,
+
+            message: error.message || "Failed to generate research"
+
+        });
+
+    }
+
+};
+
+
+
+
+
+
 // Get Research By Project
 
 exports.getProjectResearch =
@@ -114,6 +264,8 @@ async(req,res)=>{
 
 
 };
+
+
 
 
 
@@ -185,6 +337,8 @@ async(req,res)=>{
 
 
 
+
+
 // Update Research
 
 exports.updateResearch =
@@ -233,6 +387,8 @@ async(req,res)=>{
     }
 
 };
+
+
 
 
 

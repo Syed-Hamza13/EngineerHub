@@ -17,10 +17,24 @@ connectDB();
 console.log("Project Models Loaded");
 
 
-app.listen(PORT,()=>{
+const server = app.listen(PORT, () => {
+    console.log(`✅ Server running on port ${PORT}`);
+    console.log(`📍 API URL: http://localhost:${PORT}/api`);
+});
 
-    console.log(
-        `Server running on port ${PORT}`
-    );
+// Error handling for server
+server.on('error', (error) => {
+    console.error('❌ Server Error:', error);
+    if (error.code === 'EADDRINUSE') {
+        console.error(`Port ${PORT} is already in use`);
+    }
+});
 
+// Graceful shutdown
+process.on('SIGTERM', () => {
+    console.log('SIGTERM received, shutting down gracefully...');
+    server.close(() => {
+        console.log('Server closed');
+        process.exit(0);
+    });
 });

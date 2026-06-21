@@ -33,6 +33,23 @@ const researchBlockSchema = new mongoose.Schema(
         default: ""
     },
 
+    generatedContent:{
+    type:Object,
+    default:{}
+},
+
+
+query:{
+    type:String,
+    default:""
+},
+
+
+aiGenerated:{
+    type:Boolean,
+    default:false
+},
+
 
     content:
     {
@@ -48,7 +65,10 @@ const researchBlockSchema = new mongoose.Schema(
         }
     ],
 
-
+embedding:{
+    type:[Number],
+    default:[]
+},
     references:
     [
         {
