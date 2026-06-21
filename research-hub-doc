@@ -1,0 +1,496 @@
+# Research Hub Flow
+
+```
+Research Hub
+    ↓
+Project Card Click
+    ↓
+Project Workspace
+        ├── Overview
+        ├── Team
+        ├── Tasks
+        ├── Documents
+        ├── AI Research Assistant
+        ├── Discussions
+        ├── Meetings
+        └── Activity Timeline
+```
+
+Sidebar me koi naya option nahi.
+
+User flow:
+
+```
+Research Hub
+   ↓
+Project Open
+   ↓
+Workspace
+```
+
+---
+
+# Workspace Layout
+
+Open karne par screen kuch aisi:
+
+```
+------------------------------------------------------
+Project Name
+
+AI Research Agent Platform
+Domain: AI/ML
+
+Progress 68%
+Team: 8 Members
+
+------------------------------------------------------
+
+[Overview]
+[Tasks]
+[Team]
+[Documents]
+[AI Assistant]
+[Meetings]
+[Activity]
+
+------------------------------------------------------
+Content Area
+------------------------------------------------------
+```
+
+Tab based navigation.
+
+Professional SaaS products bhi yehi karte hain.
+
+---
+
+# 1. Overview Tab
+
+Default tab.
+
+Purpose:
+
+Project ka health dashboard.
+
+Cards:
+
+### Project Progress
+
+```
+68%
+Research Complete
+```
+
+### Team Members
+
+```
+8 Active Members
+```
+
+### Documents
+
+```
+14 Documents
+```
+
+### Tasks
+
+```
+22 Tasks
+```
+
+### Meetings
+
+```
+5 Meetings
+```
+
+---
+
+### Progress Timeline
+
+```
+Research Started
+Literature Review
+Data Collection
+Analysis
+Report Generation
+Completed
+```
+
+Visual tracker.
+
+---
+
+# 2. Team Tab
+
+Ye project specific team hai.
+
+Columns:
+
+| Name | Role | Status | Tasks | Actions |
+
+Example:
+
+```
+Rahul Sharma
+Lead Researcher
+Online
+12 Tasks
+
+Ahmed Khan
+Research Assistant
+Offline
+4 Tasks
+```
+
+Actions:
+
+```
+Assign Task
+Change Role
+Remove
+```
+
+---
+
+### Invite Member
+
+Button:
+
+```
++ Invite Member
+```
+
+Reuse existing modal.
+
+---
+
+# 3. Tasks Tab
+
+Ye bahut important hai.
+
+Task system:
+
+```
+Task Title
+Assigned To
+Priority
+Due Date
+Status
+```
+
+Status:
+
+```
+Todo
+In Progress
+Review
+Completed
+```
+
+---
+
+View:
+
+```
+Todo
+ ├─ Literature Review
+ ├─ Collect Datasets
+
+In Progress
+ ├─ Train LLM
+
+Completed
+ ├─ Research Proposal
+```
+
+Kanban style.
+
+---
+
+# 4. Documents Tab
+
+Research ka main section.
+
+Upload:
+
+```
+PDF
+DOCX
+PPT
+TXT
+Images
+```
+
+Document card:
+
+```
+Research_Paper.pdf
+
+Uploaded By:
+Rahul Sharma
+
+Size:
+12 MB
+
+Uploaded:
+2 hours ago
+```
+
+Actions:
+
+```
+Preview
+Download
+Delete
+```
+
+---
+
+### AI Document Analysis
+
+Each document:
+
+```
+Summarize
+Extract Insights
+Generate Notes
+Ask Questions
+```
+
+buttons.
+
+---
+
+# 5. AI Research Assistant Tab
+
+Workspace ka killer feature.
+
+ChatGPT style.
+
+Layout:
+
+```
+----------------------------------
+Chat Area
+----------------------------------
+
+User Message
+
+AI Response
+
+----------------------------------
+Input Box
+----------------------------------
+```
+
+Special tools:
+
+```
+Analyze Uploaded Papers
+Generate Research Summary
+Create Literature Review
+Find Research Gaps
+Generate Report
+Generate PPT Content
+```
+
+Quick actions.
+
+---
+
+# 6. Meetings Tab
+
+Research collaboration.
+
+Cards:
+
+```
+Weekly Sync Meeting
+
+Today
+6:00 PM
+
+Members: 6
+```
+
+Buttons:
+
+```
+Join
+Schedule
+```
+
+---
+
+### Schedule Meeting
+
+Fields:
+
+```
+Title
+Date
+Time
+Description
+Participants
+```
+
+---
+
+# 7. Discussions Tab
+
+Team discussion board.
+
+Like Slack lite.
+
+```
+General Discussion
+
+Rahul:
+Dataset uploaded.
+
+Ahmed:
+Review completed.
+
+Hamza:
+Working on summary.
+```
+
+Thread style.
+
+---
+
+# 8. Activity Timeline
+
+Audit log.
+
+```
+Rahul uploaded paper.pdf
+
+Ahmed completed task
+
+Hamza generated AI summary
+
+Meeting scheduled
+```
+
+Chronological order.
+
+---
+
+# Workspace Header
+
+Top section:
+
+```
+--------------------------------------------------
+
+AI Research Agent Platform
+
+AI/ML
+
+Progress 68%
+
+[Invite]
+[Meeting]
+[Upload]
+[AI Assistant]
+
+--------------------------------------------------
+```
+
+Always visible.
+
+---
+
+# Folder Structure
+
+Pehle se design kar le:
+
+```text
+pages/
+└── Dashboard/
+    ├── ResearchHub.jsx
+    ├── ProjectWorkspace.jsx
+
+components/workspace/
+
+├── WorkspaceHeader.jsx
+
+├── overview/
+│   ├── OverviewTab.jsx
+│   ├── ProgressCard.jsx
+│   └── TimelineCard.jsx
+
+├── team/
+│   ├── TeamTab.jsx
+│   ├── TeamMembersTable.jsx
+│   └── InviteMemberModal.jsx
+
+├── tasks/
+│   ├── TasksTab.jsx
+│   ├── TaskBoard.jsx
+│   └── CreateTaskModal.jsx
+
+├── documents/
+│   ├── DocumentsTab.jsx
+│   ├── UploadDocumentModal.jsx
+│   └── DocumentCard.jsx
+
+├── ai/
+│   ├── AIAssistantTab.jsx
+│   └── ChatMessage.jsx
+
+├── meetings/
+│   ├── MeetingsTab.jsx
+│   └── ScheduleMeetingModal.jsx
+
+├── activity/
+│   └── ActivityTimeline.jsx
+```
+
+# Build Order
+
+Mere hisaab se:
+
+### Phase 1
+
+✅ Project click navigation
+✅ Workspace page
+✅ Workspace header
+✅ Overview tab
+
+### Phase 2
+
+✅ Team tab
+✅ Invite members
+✅ Member management
+
+### Phase 3
+
+✅ Tasks tab
+✅ Task assignment
+
+### Phase 4
+
+✅ Documents upload
+
+### Phase 5
+
+✅ AI Assistant
+
+### Phase 6
+
+✅ Meetings
+
+### Phase 7
+
+✅ Activity timeline
+
+Abhi sabse pehla practical step hai:
+
+**Project card pe click → ProjectWorkspace route open karwana + WorkspaceHeader + OverviewTab banana.**
+
+Uske baad baaki tabs add karte jayenge. Yeh foundation sahi rahega.
