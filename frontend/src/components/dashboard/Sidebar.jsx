@@ -13,15 +13,16 @@ import {
 
 import { Link, useLocation } from "react-router-dom";
 
+
 function Sidebar() {
   const location = useLocation();
 
   const menuItems = [
-    {
-      icon: LayoutDashboard,
-      label: "Dashboard",
-      path: "/dashboard",
-    },
+    // {
+    //   icon: LayoutDashboard,
+    //   label: "Dashboard",
+    //   path: "/dashboard",
+    // },
     {
       icon: FlaskConical,
       label: "Research Hub",
@@ -32,26 +33,26 @@ function Sidebar() {
       label: "Teams",
       path: "/dashboard/teams",
     },
-    {
-      icon: FileText,
-      label: "Docs",
-      path: "/dashboard/docs",
-    },
-    {
-      icon: Bot,
-      label: "AI Assistant",
-      path: "/dashboard/ai-assistant",
-    },
-    {
-      icon: ShieldCheck,
-      label: "Quality Checks",
-      path: "/dashboard/quality-checks",
-    },
-    {
-      icon: ListTodo,
-      label: "Tasks",
-      path: "/dashboard/tasks",
-    },
+    // {
+    //   icon: FileText,
+    //   label: "Docs",
+    //   path: "/dashboard/docs",
+    // },
+    // {
+    //   icon: Bot,
+    //   label: "AI Assistant",
+    //   path: "/dashboard/ai-assistant",
+    // },
+    // {
+    //   icon: ShieldCheck,
+    //   label: "Quality Checks",
+    //   path: "/dashboard/quality-checks",
+    // },
+    // {
+    //   icon: ListTodo,
+    //   label: "Tasks",
+    //   path: "/dashboard/tasks",
+    // },
   ];
 
   return (
@@ -98,10 +99,21 @@ function Sidebar() {
         </button>
 
         <div className="space-y-4 text-slate-600">
-          <button className="flex items-center gap-3">
-            <Settings size={18} />
-            Settings
-          </button>
+          <Link
+  to="/dashboard/settings"
+  className={`
+    flex items-center gap-3 transition
+
+    ${
+      location.pathname === "/dashboard/settings"
+        ? "text-blue-600"
+        : "text-slate-600"
+    }
+  `}
+>
+  <Settings size={18} />
+  Settings
+</Link>
 
           <button className="flex items-center gap-3">
             <CircleHelp size={18} />

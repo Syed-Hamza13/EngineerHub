@@ -11,6 +11,9 @@ import TechStackStep from "../../components/onboarding/TechStackStep";
 import InterestsStep from "../../components/onboarding/InterestsStep";
 import SetupStep from "../../components/onboarding/SetupStep";
 
+import { createProfile }
+from "../../services/profileApi";
+
 function Onboarding() {
   const navigate = useNavigate();
 
@@ -77,23 +80,63 @@ function Onboarding() {
     nextStep();
   };
 
-  const handleOnboardingComplete = () => {
-    console.log("Final Onboarding Data:", onboardingData);
+  const handleOnboardingComplete =
+async () => {
+ 
+  try {
 
-    /*
-      Future Backend API
+    const user =
+    JSON.parse(
+      localStorage.getItem("user")
+    );
 
-      await axios.post("/api/onboarding", {
-        skills: onboardingData.skills,
-        algorithms: onboardingData.algorithms,
-        techStack: onboardingData.techStack,
-        interests: onboardingData.interests,
-      });
+    console.log("USER OBJECT =>", user);
+    console.log("USER ID =>", user.id);
+    console.log("USER _ID =>", user._id);
 
-    */
+    await createProfile({
 
-    navigate("/dashboard");
-  };
+      userId: user.id,
+
+      role: "",
+
+      experienceLevel: "",
+
+      bio: "",
+
+      skills:
+      onboardingData.skills,
+
+      algorithms:
+      onboardingData.algorithms,
+
+      technologies:
+      onboardingData.techStack,
+
+      interests:
+      onboardingData.interests,
+
+    });
+
+    navigate(
+      "/dashboard"
+    );
+
+  } catch(error) {
+
+    console.log(
+      "PROFILE ERROR =>",
+      error.response?.data
+    );
+
+    console.log(
+      "FULL ERROR =>",
+      error
+    );
+
+  }
+
+};
 
   const renderStep = () => {
     switch (currentStep) {

@@ -12,6 +12,8 @@ import ProjectWorkspace from "../pages/Dashboard/ProjectWorkspace";
 
 import TeamDetails from "../pages/Dashboard/TeamDetails";
 
+import ProfilePage from "../pages/Dashboard/ProfilePage";
+
 function AppRoutes() {
   return (
     <Routes>
@@ -32,6 +34,8 @@ function AppRoutes() {
         <Route path="teams/:id" element={<TeamDetails />} />
 
         <Route path="project/:projectId" element={<ProjectWorkspace />} />
+
+        <Route path="settings" element={<ProfilePage />} />
       </Route>
     </Routes>
   );

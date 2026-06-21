@@ -47,7 +47,7 @@ const handleSubmit = async(e)=>{
         );
 
 
-        navigate("/dashboard");
+        navigate("/onboarding");
 
 
     }

@@ -9,40 +9,42 @@ const { updateProfileEmbedding } = require("../services/profileEmbeddingUpdater"
 
 const createProfile = async(req,res)=>{
 
+    console.log(
+      "PROFILE BODY =>",
+      req.body
+    );
+
     try{
 
         const profile =
         await profileService.createProfile(req.body);
 
 
-        const profileText =
-        generateProfileText(profile);
+        // TEMPORARY: Comment out embedding for debugging
+        // const profileText =
+        // generateProfileText(profile);
 
 
-        const embeddingResponse =
-        await generateEmbedding(
-            profile.userId,
-            profileText
-        );
+        // const embeddingResponse =
+        // await generateEmbedding(
+        //     profile.userId,
+        //     profileText
+        // );
 
-        const savedEmbedding =
-            await saveEmbedding(
-                profile.userId,
-                embeddingResponse.embedding
-            );
+        // const savedEmbedding =
+        //     await saveEmbedding(
+        //         profile.userId,
+        //         embeddingResponse.embedding
+        //     );
 
 
        res.status(201).json({
 
     success:true,
 
-    message:"Profile created with AI embedding",
+    message:"Profile created",
 
-    data:{
-        profile,
-        profileText,
-        embedding:savedEmbedding
-    }
+    data:profile
 
 });
 
@@ -231,6 +233,10 @@ const deleteProfile = async(req,res)=>{
 const addSkill = async(req,res)=>{
 
     try{
+
+        const {userId}=req.params;
+
+        const {skill}=req.body;
 
         const profile =
         await profileService.addSkill(
