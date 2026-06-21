@@ -6,11 +6,11 @@ import ChatTab from "../../components/workspace/chat/ChatTab";
 import DocumentsTab from "../../components/workspace/documents/DocumentsTab";
 import TasksTab from "../../components/workspace/tasks/TasksTab";
 import MeetingsTab from "../../components/workspace/meetings/MeetingsTab";
-import OverviewTab from "../../components/workspace/overview/OverviewTab";
+import OverviewTab from "../../components/workspace/overview/OverviewTab"; 
 
 function ProjectWorkspace() {
   const { projectId } = useParams();
-  const [activeTab, setActiveTab] = useState("chat");
+  const [activeTab, setActiveTab] = useState("chat"); 
 
   // Mock project data - will be replaced with actual API call
   const project = {

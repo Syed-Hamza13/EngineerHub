@@ -5,7 +5,7 @@ const ProjectMember = require("./src/models/ProjectMember");
 const ProjectSetting = require("./src/models/ProjectSetting");
 const app = require("./src/app");
 
-const connectDB = require("./src/config/db");
+const connectDB = require("./src/config/db");  
 
 
 const PORT = process.env.PORT || 5000;
