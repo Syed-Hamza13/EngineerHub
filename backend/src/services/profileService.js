@@ -7,7 +7,7 @@ const createProfile = async(data)=>{
 
     const profile = await Profile.create(data);
 
-    return profile;
+    return profile; 
 
 };
 
