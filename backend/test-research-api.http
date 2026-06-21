@@ -1,0 +1,51 @@
+### Research API Tests
+
+### Test 1: Check if endpoint exists (GET)
+GET http://localhost:5000/api/research/generate
+
+### Test 2: Generate Research (POST) - Main Test
+POST http://localhost:5000/api/research/generate
+Content-Type: application/json
+
+{
+  "query": "Explain AI fraud detection system",
+  "userId": "665f8a9c123456789abcde13",
+  "projectId": "6a35f20e07a4c8d2b755dfd4"
+}
+
+### Test 3: Missing userId
+POST http://localhost:5000/api/research/generate
+Content-Type: application/json
+
+{
+  "query": "Build recommendation system",
+  "projectId": "6a35f20e07a4c8d2b755dfd4"
+}
+
+### Test 4: Missing projectId
+POST http://localhost:5000/api/research/generate
+Content-Type: application/json
+
+{
+  "query": "Create chatbot",
+  "userId": "665f8a9c123456789abcde13"
+}
+
+### Test 5: Missing query
+POST http://localhost:5000/api/research/generate
+Content-Type: application/json
+
+{
+  "userId": "665f8a9c123456789abcde13",
+  "projectId": "6a35f20e07a4c8d2b755dfd4"
+}
+
+### Test 6: Empty query
+POST http://localhost:5000/api/research/generate
+Content-Type: application/json
+
+{
+  "query": "",
+  "userId": "665f8a9c123456789abcde13",
+  "projectId": "6a35f20e07a4c8d2b755dfd4"
+}
