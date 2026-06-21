@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const API_URL =
-"http://localhost:5000/api/profile";
+"http://10.10.32.64:5000/api/profile";
 
 export const createProfile = async (
   profileData
-) => {
+) => { 
 
   const response =
   await axios.post(

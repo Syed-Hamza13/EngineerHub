@@ -44,7 +44,7 @@ function ProfilePage() {
 
         const response =
         await getProfile(
-          user.id
+          user._id
         );
 
         const profileData =
@@ -94,7 +94,7 @@ function ProfilePage() {
       );
 
       await updateProfile(
-        user.id,
+        user._id,
         {
           role:
           profile.role,

@@ -90,13 +90,9 @@ async () => {
       localStorage.getItem("user")
     );
 
-    console.log("USER OBJECT =>", user);
-    console.log("USER ID =>", user.id);
-    console.log("USER _ID =>", user._id);
-
     await createProfile({
 
-      userId: user.id,
+      userId: user._id,
 
       role: "",
 

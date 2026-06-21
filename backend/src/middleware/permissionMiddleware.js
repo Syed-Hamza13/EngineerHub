@@ -4,10 +4,10 @@ require("../services/permissionService");
 
 
 const checkPermission =
-(requiredPermission)=>{
+(requiredPermission)=>{ 
 
 
-return async(req,res,next)=>{
+return async(req,res,next)=>{ 
 
 
     try
